@@ -191,6 +191,7 @@ MonoBehaviour:
     type: 2}
   player: {fileID: 1762547943}
   mainCamera: {fileID: 520383153}
+  mazeFile: {fileID: 4900000, guid: 4c36d0d009c3eb6478cdb6e89334b687, type: 3}
 --- !u!4 &463380864
 Transform:
   m_ObjectHideFlags: 0
