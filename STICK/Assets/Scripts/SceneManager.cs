@@ -44,7 +44,7 @@ public class SceneManager : MonoBehaviour {
         }
         transform.Translate(new Vector3(-7f, -6.5f, 0));
         player.transform.Rotate(new Vector3(0, 0, -90f));
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
