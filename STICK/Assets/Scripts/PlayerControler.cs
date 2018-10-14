@@ -52,7 +52,7 @@ public class PlayerControler : MonoBehaviour {
         }
 
         // Controller Support
-            float xJoysticMove = Input.GetAxis("LeftJoystickX");
+        float xJoysticMove = Input.GetAxis("LeftJoystickX");
         float yJoysticMove = Input.GetAxis("LeftJoystickY");
         float xJoysticLook = Input.GetAxis("RightJoystickX");
         float yJoysticLook = Input.GetAxis("RightJoystickY");
@@ -83,11 +83,18 @@ public class PlayerControler : MonoBehaviour {
         Vector3 cameraPosition = player.transform.position;
         cameraPosition.z = cameraOffset;
         mainCamera.transform.position = cameraPosition;
+
+#if DEBUG
+        // This is used to output debug Information
+        if (Input.GetKey(KeyCode.I))
+        {
+            Debug.Log("Player is located at: " + player.transform.position);
+        }
+#endif
     }
 
     private void LookAtMouse()
     {
-        Debug.Log("Looking at mouse");
         Vector3 mouse = Input.mousePosition;
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Vector3 flashlightDirection = mouse - screenCenter;

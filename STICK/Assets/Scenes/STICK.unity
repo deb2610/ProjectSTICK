@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 463380864}
   - component: {fileID: 463380863}
   - component: {fileID: 463380865}
+  - component: {fileID: 463380866}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -192,7 +193,8 @@ MonoBehaviour:
   player: {fileID: 1762547943}
   mainCamera: {fileID: 520383153}
   mazeFile: {fileID: 4900000, guid: 4c36d0d009c3eb6478cdb6e89334b687, type: 3}
-  monsterPrefab: {fileID: 0}
+  monsterPrefab: {fileID: 1769894005351886, guid: 46270346007ca804385505eb7945f498,
+    type: 2}
   numberOfMonsters: 10
 --- !u!4 &463380864
 Transform:
@@ -225,6 +227,20 @@ MonoBehaviour:
   joystickTolerance: 0.001
   mainCamera: {fileID: 520383153}
   player: {fileID: 1762547943}
+--- !u!114 &463380866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4c400e058bca34fb7a9fba5e7da4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1762547943}
+  maxLife: 3
+  monsterSpawnDistance: 8
 --- !u!1001 &467780979
 Prefab:
   m_ObjectHideFlags: 0
@@ -618,6 +634,24 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46270346007ca804385505eb7945f498, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &853884137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1769894005351886, guid: 46270346007ca804385505eb7945f498,
+    type: 2}
+  m_PrefabInternal: {fileID: 797853671}
+--- !u!114 &853884138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 853884137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f589414a924fc4aabc0e3724b27fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterSpeed: 0.5
+  player: {fileID: 1762547943}
 --- !u!1001 &985483490
 Prefab:
   m_ObjectHideFlags: 0

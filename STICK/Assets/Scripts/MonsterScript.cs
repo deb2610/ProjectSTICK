@@ -16,11 +16,11 @@ public class MonsterScript : MonoBehaviour {
 	void Update () {
         // Seek the player
         float distanceTraveled = monsterSpeed * Time.deltaTime;
-        Vector3 movement = player.transform.position - this.transform.position;
+        Vector3 movement = player.transform.position - gameObject.transform.position;
         movement.z = 0;
         movement.Normalize();
         movement *= distanceTraveled;
-
-        this.transform.Translate(movement);
+        Debug.Log("Moving monster towards player: " + movement);
+        gameObject.transform.Translate(movement);
 	}
 }
