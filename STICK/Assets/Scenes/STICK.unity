@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logo: {fileID: 1186722603}
   background: {fileID: 932863119}
-  logoFadeTime: 5
+  logoFadeOutTime: 4
 --- !u!1 &463380862
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: 932863121}
   - component: {fileID: 932863120}
   - component: {fileID: 932863119}
+  - component: {fileID: 932863122}
   m_Layer: 0
   m_Name: blackground
   m_TagString: Untagged
@@ -782,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -822,6 +823,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 19.2, y: 18.8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &932863122
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 932863118}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &946288249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1021,7 @@ GameObject:
   - component: {fileID: 1186722605}
   - component: {fileID: 1186722604}
   - component: {fileID: 1186722603}
+  - component: {fileID: 1186722606}
   m_Layer: 0
   m_Name: STICKx1280
   m_TagString: Untagged
@@ -1028,7 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8666667, g: 0.8117647, b: 0.73333335, a: 0}
+  m_Color: {r: 0.8666667, g: 0.8117647, b: 0.73333335, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1068,6 +1081,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 12.8, y: 12.8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1186722606
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1186722602}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1398182143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1398182144
 Light:
   m_ObjectHideFlags: 0
