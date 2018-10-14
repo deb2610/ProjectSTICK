@@ -7,18 +7,25 @@ public class PlayerControler : MonoBehaviour {
     public float movementSpeed = 1f; // Units per second
     public float sprintMultiplier = 2f;
     public float joystickTolerance = 0.05f; // Lower equals more sensitive
-    public GameObject camera;
+    public GameObject mainCamera;
     public GameObject player;
 
     private float cameraOffset;
+    private bool useMouse = true;
 
 	// Use this for initialization
 	void Start () {
-        cameraOffset = camera.transform.position.z;
+        cameraOffset = mainCamera.transform.position.z;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        // Check for input toggle
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            useMouse = !useMouse;
+        }
+
         // Keyboard Controls
         float triggerHeld = Input.GetAxis("SprintAxis");
         float sprinting = Input.GetKey(KeyCode.LeftShift)   // Left shift
@@ -30,27 +37,22 @@ public class PlayerControler : MonoBehaviour {
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(new Vector3(0, movementDistance, 0));
-            player.transform.eulerAngles = new Vector3(0, 0, 0);
-            
         }
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(new Vector3(-movementDistance, 0, 0));
-            player.transform.eulerAngles = new Vector3(0, 0, 90);
         }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(new Vector3(0, -movementDistance, 0));
-            player.transform.eulerAngles = new Vector3(0, 0, 180);
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(new Vector3(movementDistance, 0, 0));
-            player.transform.eulerAngles = new Vector3(0, 0, 270);
         }
 
         // Controller Support
-        float xJoysticMove = Input.GetAxis("LeftJoystickX");
+            float xJoysticMove = Input.GetAxis("LeftJoystickX");
         float yJoysticMove = Input.GetAxis("LeftJoystickY");
         float xJoysticLook = Input.GetAxis("RightJoystickX");
         float yJoysticLook = Input.GetAxis("RightJoystickY");
@@ -67,7 +69,11 @@ public class PlayerControler : MonoBehaviour {
             transform.Translate(joystickDirection);
         }
         joystickDirection = new Vector3(xJoysticLook, yJoysticLook, 0);
-        if (joystickDirection.magnitude > joystickTolerance)
+        if (useMouse)
+        {
+            LookAtMouse();
+        }
+        else if (joystickDirection.magnitude > joystickTolerance)
         {
             float rotation = Mathf.Rad2Deg * Mathf.Atan2(yJoysticLook, xJoysticLook) - 90;
             player.transform.eulerAngles = new Vector3(0, 0, rotation);
@@ -76,6 +82,16 @@ public class PlayerControler : MonoBehaviour {
         // Have camera track player
         Vector3 cameraPosition = player.transform.position;
         cameraPosition.z = cameraOffset;
-        camera.transform.position = cameraPosition;
+        mainCamera.transform.position = cameraPosition;
+    }
+
+    private void LookAtMouse()
+    {
+        Debug.Log("Looking at mouse");
+        Vector3 mouse = Input.mousePosition;
+        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        Vector3 flashlightDirection = mouse - screenCenter;
+        float rotation = Mathf.Rad2Deg * Mathf.Atan2(flashlightDirection.y, flashlightDirection.x) - 90;
+        player.transform.eulerAngles = new Vector3(0, 0, rotation);
     }
 }
