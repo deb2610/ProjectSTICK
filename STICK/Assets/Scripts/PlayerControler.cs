@@ -87,7 +87,6 @@ public class PlayerControler : MonoBehaviour {
 
     private void LookAtMouse()
     {
-        Debug.Log("Looking at mouse");
         Vector3 mouse = Input.mousePosition;
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Vector3 flashlightDirection = mouse - screenCenter;
