@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class SceneManager : MonoBehaviour {
+public class SceneManager : MonoBehaviour
+{
 
     // A readonly singly initialized property to expose the maze to other entitites 
     private char[,] mazeArray;
@@ -20,23 +21,25 @@ public class SceneManager : MonoBehaviour {
             return mazeArray ?? (mazeArray = ReadMaze());
         }
     }
-    public List<GameObject> Monsters { get; private set; }
+
     public GameObject wallBlockPrefab;
     public GameObject player;
     public GameObject mainCamera;
     public TextAsset mazeFile;
-    public GameObject monsterPrefab;
-    public int numberOfMonsters = 10;
     private Vector3 mazeOffset;
 
+    private Vector3 startIndex;
+
     // Use this for initialization
-	void Start () {
+    void Start()
+    {
         // Build the wall!
         float wallWidth = wallBlockPrefab.transform.lossyScale.x;
         mazeOffset = new Vector3(-MazeArray.GetLength(0) * wallWidth / 2, -MazeArray.GetLength(1) * wallWidth / 2, 9.5f);
+        Debug.Log("Maze offset: " + mazeOffset);
         for (int i = 0; i < MazeArray.GetLength(0); i++)
         {
-            for(int j = 0; j < MazeArray.GetLength(1); j++)
+            for (int j = 0; j < MazeArray.GetLength(1); j++)
             {
                 if (MazeArray[i, j] == '0')
                 {
@@ -45,17 +48,20 @@ public class SceneManager : MonoBehaviour {
                 }
             }
         }
-        transform.Translate(new Vector3(-7f, -6.5f, 0));
+
+        startIndex = new Vector3(0, 1, 0);
+        transform.position = (startIndex + mazeOffset);
         player.transform.Rotate(new Vector3(0, 0, -90f));
 
         // Spawn some spooky bois
-        SpawnMonsters();
+        //SpawnMonsters(); Lol, nope, creating monsters like this is super inefficient. 
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     private char[,] ReadMaze()
     {
@@ -67,14 +73,13 @@ public class SceneManager : MonoBehaviour {
 
         // Deal with unix/windows line endings
         stringMaze.Replace("\r", "");
-
         string[] rows = stringMaze.Split('\n');
-
+        Debug.Log("Creating List");
         char[,] charMaze = new char[rows.Length, rows[0].Length];
-        for(int i = 0; i < rows.Length; i++)
+        for (int i = 0; i < rows.Length; i++)
         {
             string row = rows[i];
-            for( int j = 0; j < row.Length; j++)
+            for (int j = 0; j < row.Length; j++)
             {
                 if (j > row.Length)
                 {
@@ -88,31 +93,5 @@ public class SceneManager : MonoBehaviour {
         }
 
         return charMaze;
-    }
-
-    /// <summary>
-    /// Creates a bunch of monsters throughout the maze
-    /// </summary>
-    private void SpawnMonsters()
-    {
-        int monstersGenerated = 0;
-        float wallWidth = wallBlockPrefab.transform.lossyScale.x;
-        Monsters = new List<GameObject>();
-        while (monstersGenerated < numberOfMonsters)
-        {
-            // Pick a random tile
-            int nextX = (int)(Random.value * MazeArray.GetLength(0));
-            int nextY = (int)(Random.value * MazeArray.GetLength(1));
-
-            // Check for empty tile
-            if(MazeArray[nextX, nextY] == '1')
-            {
-                Vector3 position = new Vector3(nextX * wallWidth, nextY * wallWidth, 0) + mazeOffset;
-                GameObject newMonster = Instantiate(monsterPrefab, position, Quaternion.identity);
-                newMonster.SetActive(false);
-                Monsters.Add(newMonster);
-                monstersGenerated++;
-            }
-        }
     }
 }

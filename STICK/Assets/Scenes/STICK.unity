@@ -303,8 +303,6 @@ MonoBehaviour:
   player: {fileID: 1762547943}
   mainCamera: {fileID: 520383153}
   mazeFile: {fileID: 4900000, guid: 4c36d0d009c3eb6478cdb6e89334b687, type: 3}
-  monsterPrefab: {fileID: 0}
-  numberOfMonsters: 10
 --- !u!4 &463380864
 Transform:
   m_ObjectHideFlags: 0
@@ -349,7 +347,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 463380862}
   maxLife: 3
-  monsterSpawnDistance: 8
+  monsterSpawnDistance: 5
+  monsterPrefab: {fileID: 1769894005351886, guid: 46270346007ca804385505eb7945f498,
+    type: 2}
+  monsterSpawnRate: 2
+  maxMonsters: 5
+  monsterSpeed: 0.1
 --- !u!1 &520383153
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,8 +980,8 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: LeftJoystickX
+  m_VerticalAxis: LeftJoystickY
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
