@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 463380863}
   - component: {fileID: 463380865}
   - component: {fileID: 463380866}
+  - component: {fileID: 463380867}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -353,6 +354,19 @@ MonoBehaviour:
   monsterSpawnRate: 2
   maxMonsters: 5
   monsterSpeed: 0.1
+--- !u!114 &463380867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd0bf50ab4dae74482034b136a58998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Flashlight: {fileID: 1451511899}
+  numSteps: 3
 --- !u!1 &520383153
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,10 +687,6 @@ Prefab:
     - target: {fileID: 4260365137706296, guid: 46270346007ca804385505eb7945f498, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1769894005351886, guid: 46270346007ca804385505eb7945f498, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46270346007ca804385505eb7945f498, type: 2}
@@ -1710,7 +1720,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.9247071, b: 0.4669811, a: 1}
   m_Intensity: 4.03
-  m_Range: 3
+  m_Range: 4
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:

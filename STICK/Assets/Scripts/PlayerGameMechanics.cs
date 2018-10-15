@@ -66,8 +66,25 @@ public class PlayerGameMechanics : MonoBehaviour
         Monsters.Add(newMonster);
     }
 
-    public void RemoveMonster(GameObject monster)
+    /// <summary>
+    /// Use this method for a successful kill on a monster with the flashlight
+    /// </summary>
+    /// <param name="monster">The monster that was killed</param>
+    public void KillMonster(GameObject monster)
     {
         Monsters.Remove(monster);
+    }
+
+    /// <summary>
+    /// Use this method for a successful attack from a monster
+    /// </summary>
+    /// <param name="monster">The monster that attacked</param>
+    public void AttackedByMonster(GameObject monster)
+    {
+        Monsters.Remove(monster);
+        currentLife--;
+
+        FlashlightManager flashlightManager = gameObject.GetComponent(typeof(FlashlightManager)) as FlashlightManager;
+        flashlightManager.ReduceIntensity();
     }
 }
