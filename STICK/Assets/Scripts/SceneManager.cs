@@ -37,10 +37,23 @@ public class SceneManager : MonoBehaviour
         float wallWidth = wallBlockPrefab.transform.lossyScale.x;
         mazeOffset = new Vector3(-MazeArray.GetLength(0) * wallWidth / 2, -MazeArray.GetLength(1) * wallWidth / 2, 9.5f);
         Debug.Log("Maze offset: " + mazeOffset);
+        startIndex = new Vector3(0, 1, 0);
         for (int i = 0; i < MazeArray.GetLength(0); i++)
         {
             for (int j = 0; j < MazeArray.GetLength(1); j++)
             {
+                switch(MazeArray[i, j])
+                {
+                    case '0':
+                        Vector3 wallPos = new Vector3(i * wallWidth, j * wallWidth, 0) + mazeOffset;
+                        Instantiate(wallBlockPrefab, wallPos, Quaternion.identity);
+                        break;
+                    case 'S':
+                        startIndex = new Vector3(i, j, 0);
+                        Debug.Log("Set start index: " + startIndex);
+                        break;
+
+                }
                 if (MazeArray[i, j] == '0')
                 {
                     Vector3 wallPos = new Vector3(i * wallWidth, j * wallWidth, 0) + mazeOffset;
@@ -49,7 +62,6 @@ public class SceneManager : MonoBehaviour
             }
         }
 
-        startIndex = new Vector3(0, 1, 0);
         transform.position = (startIndex + mazeOffset);
         player.transform.Rotate(new Vector3(0, 0, -90f));
 
