@@ -65,4 +65,9 @@ public class PlayerGameMechanics : MonoBehaviour
         monsterController.monsterSpeed = monsterSpeed;
         Monsters.Add(newMonster);
     }
+
+    public void RemoveMonster(GameObject monster)
+    {
+        Monsters.Remove(monster);
+    }
 }

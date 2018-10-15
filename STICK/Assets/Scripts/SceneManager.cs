@@ -64,9 +64,6 @@ public class SceneManager : MonoBehaviour
 
         transform.position = (startIndex + mazeOffset);
         player.transform.Rotate(new Vector3(0, 0, -90f));
-
-        // Spawn some spooky bois
-        //SpawnMonsters(); Lol, nope, creating monsters like this is super inefficient. 
     }
 
     // Update is called once per frame

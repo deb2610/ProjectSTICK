@@ -13,6 +13,8 @@ public class PlayerControler : MonoBehaviour {
     private float cameraOffset;
     private bool useMouse = true;
 
+    public Vector3 FlashlightAngle { get; private set; }
+
 	// Use this for initialization
 	void Start () {
         cameraOffset = mainCamera.transform.position.z;
@@ -83,6 +85,8 @@ public class PlayerControler : MonoBehaviour {
         Vector3 cameraPosition = player.transform.position;
         cameraPosition.z = cameraOffset;
         mainCamera.transform.position = cameraPosition;
+
+        FlashlightAngle = gameObject.transform.GetChild(0).up * -1;
     }
 
     private void LookAtMouse()
