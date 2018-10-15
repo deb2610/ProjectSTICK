@@ -13,6 +13,9 @@ public class PlayerControler : MonoBehaviour {
     private float cameraOffset;
     private bool useMouse = true;
 
+    /// <summary>
+    /// A vector pointing in the direction of the flashlight
+    /// </summary>
     public Vector3 FlashlightAngle { get; private set; }
 
 	// Use this for initialization
