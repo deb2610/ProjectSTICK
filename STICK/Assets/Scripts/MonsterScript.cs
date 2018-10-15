@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class MonsterScript : MonoBehaviour
 {
-    public float monsterSpeed = 0.5f; // Units per second
+    public float monsterSpeed = 0.7f; // Units per second
+    public float monsterChaseSpeed = 3.0f;
+    public float monsterChaseRange = 3.0f;
     public GameObject player;
+    private float decidedSpeed;
 
     public float monsterKillDistance = 2.5f;
     public float monsterKillAngle = 15.0f; //degrees
@@ -21,21 +24,29 @@ public class MonsterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CalculateMovementSpeed();
         SeekPlayer();
         CheckKill();
     }
 
     void CalculateMovementSpeed()
     {
-
+        directionOfPlayer = player.transform.position - gameObject.transform.position;
+        if(directionOfPlayer.magnitude <= monsterChaseRange)
+        {
+            decidedSpeed = Mathf.Lerp(monsterSpeed, monsterChaseSpeed, monsterChaseRange - directionOfPlayer.magnitude);
+        }
+        else
+        {
+            decidedSpeed = monsterSpeed;
+        }
     }
 
     void SeekPlayer()
     {
         // Seek the player
-        float distanceTraveled = monsterSpeed * Time.deltaTime;
-        Vector3 movement = player.transform.position - gameObject.transform.position;
-        directionOfPlayer = movement;
+        float distanceTraveled = decidedSpeed * Time.deltaTime;
+        Vector3 movement = directionOfPlayer;
         movement.z = 0;
         movement.Normalize();
         movement *= distanceTraveled;
@@ -53,9 +64,6 @@ public class MonsterScript : MonoBehaviour
             float angleOffset = Mathf.Abs(myAngle);
             if (angleOffset <= monsterKillAngle)
             {
-                Debug.Log("Distance: " + directionOfPlayer.magnitude);
-                Debug.Log("Angle Offset: " + angleOffset);
-                Debug.Log("Angle to player : " + myAngle);
                 KillMonster();
             }
         }
@@ -68,7 +76,21 @@ public class MonsterScript : MonoBehaviour
     {
         // Let the player object know that there is one fewer monsters
         PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
-        playerGameMechanics.RemoveMonster(gameObject);
+        playerGameMechanics.KillMonster(gameObject);
+
+        // Remove this game object
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        AttackPlayer();
+    }
+
+    void AttackPlayer() 
+    {
+        PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
+        playerGameMechanics.AttackedByMonster(gameObject);
 
         // Remove this game object
         Destroy(gameObject);
