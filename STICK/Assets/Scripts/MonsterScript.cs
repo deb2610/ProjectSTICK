@@ -75,11 +75,13 @@ public class MonsterScript : MonoBehaviour
             float angleOffset = Mathf.Abs(myAngle);
             if (angleOffset <= monsterKillAngle)
             {
+                Debug.Log("Monster killed by Flashlight");
                 KillMonster();
             }
         }
         if (directionOfPlayer.magnitude > monsterRange)
         {
+            Debug.Log("Monster killed by range");
             KillMonster();
         }
     }
