@@ -57,7 +57,7 @@ public class PlayerControler : MonoBehaviour {
         }
 
         // Controller Support
-            float xJoysticMove = Input.GetAxis("LeftJoystickX");
+        float xJoysticMove = Input.GetAxis("LeftJoystickX");
         float yJoysticMove = Input.GetAxis("LeftJoystickY");
         float xJoysticLook = Input.GetAxis("RightJoystickX");
         float yJoysticLook = Input.GetAxis("RightJoystickY");
@@ -67,6 +67,8 @@ public class PlayerControler : MonoBehaviour {
         {
             if(joystickDirection.magnitude > 1)
             {
+                // If the player starts to use a joystick, assume that looking at the mouse is unnecessary
+                useMouse = false;
                 joystickDirection = joystickDirection.normalized;
             }
             joystickDirection = joystickDirection * movementDistance;

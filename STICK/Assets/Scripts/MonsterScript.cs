@@ -8,6 +8,7 @@ public class MonsterScript : MonoBehaviour
     public float monsterChaseSpeed = 3.0f; // Units per second speed to LERP to while chasing
     public float monsterInWallSpeed = 1.0f; // Units per second speed while in walls
     public float monsterChaseRange = 3.0f; // Units distance to start chasing from
+    public float monsterRange = 8.0f;   // If the monster gets this far away from the player, it will despawn
     public GameObject player;
     private float decidedSpeed;
 
@@ -76,6 +77,10 @@ public class MonsterScript : MonoBehaviour
             {
                 KillMonster();
             }
+        }
+        if (directionOfPlayer.magnitude > monsterRange)
+        {
+            KillMonster();
         }
     }
 
