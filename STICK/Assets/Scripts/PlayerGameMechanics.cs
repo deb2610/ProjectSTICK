@@ -31,8 +31,9 @@ public class PlayerGameMechanics : MonoBehaviour
 
         // Maybe make a spookie boi
         if (
-                Monsters.Count < maxMonsters &&
-                (Random.value * 100 < monsterSpawnRate || Time.time - timeOfLastMonster > 15)
+                Time.time > 15f &&  // Don't start spawning monsters until 15 seconds in
+                Monsters.Count < maxMonsters && // Don't spawn more than MaxMonsters
+                (Random.value * 100 < monsterSpawnRate || Time.time - timeOfLastMonster > 15) 
             )
         {
             timeOfLastMonster = Time.time;
@@ -63,6 +64,7 @@ public class PlayerGameMechanics : MonoBehaviour
         MonsterScript monsterController = newMonster.AddComponent(typeof(MonsterScript)) as MonsterScript;
         monsterController.player = gameObject;
         monsterController.monsterSpeed = monsterSpeed;
+       
         Monsters.Add(newMonster);
     }
 

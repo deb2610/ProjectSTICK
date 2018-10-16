@@ -25,18 +25,18 @@ public class SceneManager : MonoBehaviour
     public GameObject wallBlockPrefab;
     public GameObject player;
     public GameObject mainCamera;
+    public GameObject goal;
     public TextAsset mazeFile;
     private Vector3 mazeOffset;
-
+    private float mazeScale; // Represents the width in Unity units of one maze block
     private Vector3 startIndex;
 
     // Use this for initialization
     void Start()
     {
         // Build the wall!
-        float wallWidth = wallBlockPrefab.transform.lossyScale.x;
-        mazeOffset = new Vector3(-MazeArray.GetLength(0) * wallWidth / 2, -MazeArray.GetLength(1) * wallWidth / 2, 9.5f);
-        Debug.Log("Maze offset: " + mazeOffset);
+        mazeScale = wallBlockPrefab.transform.lossyScale.x;
+        mazeOffset = new Vector3(-MazeArray.GetLength(0) * mazeScale / 2, -MazeArray.GetLength(1) * mazeScale / 2, 9.5f);
         startIndex = new Vector3(0, 1, 0);
         for (int i = 0; i < MazeArray.GetLength(0); i++)
         {
@@ -45,18 +45,20 @@ public class SceneManager : MonoBehaviour
                 switch(MazeArray[i, j])
                 {
                     case '0':
-                        Vector3 wallPos = new Vector3(i * wallWidth, j * wallWidth, 0) + mazeOffset;
+                        Vector3 wallPos = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
                         Instantiate(wallBlockPrefab, wallPos, Quaternion.identity);
                         break;
                     case 'S':
                         startIndex = new Vector3(i, j, 0);
-                        Debug.Log("Set start index: " + startIndex);
                         break;
-
+                    case 'E':
+                        Vector3 goalPos = new Vector3(i * mazeScale, j * mazeScale, 0.15f) + mazeOffset;
+                        goal.transform.position = goalPos;
+                        break;
                 }
                 if (MazeArray[i, j] == '0')
                 {
-                    Vector3 wallPos = new Vector3(i * wallWidth, j * wallWidth, 0) + mazeOffset;
+                    Vector3 wallPos = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
                     Instantiate(wallBlockPrefab, wallPos, Quaternion.identity);
                 }
             }
@@ -102,5 +104,24 @@ public class SceneManager : MonoBehaviour
         }
 
         return charMaze;
+    }
+
+    public Vector3Int GlobalToMazeCoordinate(Vector3 coordinate)
+    {
+        Vector3 shiftedOrigin = (coordinate - mazeOffset) / mazeScale;
+        return Vector3Int.FloorToInt(shiftedOrigin);
+    }
+
+    public bool IsPointInMazeBlock(Vector3 coordinate)
+    {
+        Vector3Int indeces = GlobalToMazeCoordinate(coordinate);
+        // Check outside the maze boundaries
+        if (indeces.x < 0 || indeces.x >= mazeArray.GetLength(0)
+            || indeces.y < 0 || indeces.y >= mazeArray.GetLength(1))
+        {
+            return false;
+        }
+        char mazeBlock = mazeArray[indeces.x, indeces.y];
+        return mazeBlock == '0';
     }
 }
