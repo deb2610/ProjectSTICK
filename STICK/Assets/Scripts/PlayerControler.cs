@@ -7,8 +7,8 @@ public class PlayerControler : MonoBehaviour {
     public float movementSpeed = 1f; // Units per second
     public float sprintMultiplier = 2f;
     public float joystickTolerance = 0.05f; // Lower equals more sensitive
-    public GameObject mainCamera;
     public GameObject player;
+    private Transform playerModel;
 
     private float cameraOffset;
     private bool useMouse = true;
@@ -20,7 +20,7 @@ public class PlayerControler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        cameraOffset = mainCamera.transform.position.z;
+        playerModel = player.transform.Find("PlayerModel");
 	}
 	
 	// Update is called once per frame
@@ -83,14 +83,9 @@ public class PlayerControler : MonoBehaviour {
         else if (joystickDirection.magnitude > joystickTolerance)
         {
             float rotation = Mathf.Rad2Deg * Mathf.Atan2(yJoysticLook, xJoysticLook) - 90;
-            player.transform.eulerAngles = new Vector3(0, 0, rotation);
+            playerModel.eulerAngles = new Vector3(0, 0, rotation);
         }
-
-        // Have camera track player
-        Vector3 cameraPosition = player.transform.position;
-        cameraPosition.z = cameraOffset;
-        mainCamera.transform.position = cameraPosition;
-
+        
         FlashlightAngle = gameObject.transform.GetChild(0).up * -1;
     }
 
@@ -100,6 +95,6 @@ public class PlayerControler : MonoBehaviour {
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Vector3 flashlightDirection = mouse - screenCenter;
         float rotation = Mathf.Rad2Deg * Mathf.Atan2(flashlightDirection.y, flashlightDirection.x) - 90;
-        player.transform.eulerAngles = new Vector3(0, 0, rotation);
+        playerModel.eulerAngles = new Vector3(0, 0, rotation);
     }
 }
