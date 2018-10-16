@@ -16,13 +16,9 @@ public class Goal : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-<<<<<<< HEAD
         if (other.gameObject.name.Contains("Player"))
         {
             // TODO: End the game
         }
-=======
-        // TODO: End the game
->>>>>>> 4e89573d98f8b7219c4ef7494f58945c89bc0d15
     }
 }
