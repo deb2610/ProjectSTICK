@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MonsterScript : MonoBehaviour
 {
-    public float monsterSpeed = 0.7f; // Units per second
-    public float monsterChaseSpeed = 3.0f;
-    public float monsterChaseRange = 3.0f;
+    public float monsterSpeed = 1.2f; // Units per second speed in open air
+    public float monsterChaseSpeed = 3.0f; // Units per second speed to LERP to while chasing
+    public float monsterInWallSpeed = 1.0f; // Units per second speed while in walls
+    public float monsterChaseRange = 3.0f; // Units distance to start chasing from
     public GameObject player;
     private float decidedSpeed;
 
@@ -28,11 +29,20 @@ public class MonsterScript : MonoBehaviour
         SeekPlayer();
         CheckKill();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        AttackPlayer();
+    }
 
     void CalculateMovementSpeed()
     {
+        SceneManager sceneManager = player.GetComponent(typeof(SceneManager)) as SceneManager;
         directionOfPlayer = player.transform.position - gameObject.transform.position;
-        if(directionOfPlayer.magnitude <= monsterChaseRange)
+        if(sceneManager.IsPointInMazeBlock(transform.position))
+        {
+            decidedSpeed = monsterInWallSpeed;
+        }
+        else if(directionOfPlayer.magnitude <= monsterChaseRange)
         {
             decidedSpeed = Mathf.Lerp(monsterSpeed, monsterChaseSpeed, monsterChaseRange - directionOfPlayer.magnitude);
         }
@@ -80,11 +90,6 @@ public class MonsterScript : MonoBehaviour
 
         // Remove this game object
         Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        AttackPlayer();
     }
 
     void AttackPlayer() 
