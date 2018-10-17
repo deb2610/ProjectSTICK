@@ -1,23 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FlashlightManager : MonoBehaviour {
 
     public GameObject Flashlight;
+    public int numSteps = 3;
+    public GameObject canvasGameObject;
+    private Image FlashLightImage;
+    private const string FlashlightSpriteLocation = "Sprites/flashlight";
+
     private float HeadlightMax;
     private float FootlightMax;
     private float PointlightMax;
-    public int numSteps = 3;
 
     private Light headlight;
     private Light footlight;
     private Light pointlight;
+
     private int currentStep;
 
 	// Use this for initialization
 	void Start () {
         currentStep = numSteps;
+
+        // Grab the flashlight   
+        GameObject flashLightSprite = canvasGameObject.transform.Find("Flash").gameObject;
+        FlashLightImage = flashLightSprite.GetComponent(typeof(Image)) as Image;
+        string flashlightLoc = FlashlightSpriteLocation + currentStep.ToString();
+        Debug.Log(flashlightLoc);
+        FlashLightImage.overrideSprite = Resources.Load<Sprite>(FlashlightSpriteLocation + currentStep.ToString());
 
         // Grab the light objects
         GameObject headlightGO = Flashlight.transform.Find("Headlight").gameObject;
@@ -35,7 +48,6 @@ public class FlashlightManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         
     }
 
@@ -84,5 +96,8 @@ public class FlashlightManager : MonoBehaviour {
 
         // Update point light
         pointlight.intensity = PointlightMax / numSteps * currentStep;
+
+        // Update UI
+        FlashLightImage.overrideSprite = Resources.Load<Sprite>(FlashlightSpriteLocation + currentStep.ToString());
     }
 }

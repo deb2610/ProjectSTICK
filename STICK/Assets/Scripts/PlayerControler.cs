@@ -87,6 +87,10 @@ public class PlayerControler : MonoBehaviour {
         }
         
         FlashlightAngle = gameObject.transform.GetChild(0).up * -1;
+
+        // Kill all momentum
+        Rigidbody rigidbody = player.GetComponent(typeof(Rigidbody)) as Rigidbody;
+        rigidbody.velocity = Vector3.zero;
     }
 
     private void LookAtMouse()

@@ -369,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Flashlight: {fileID: 1451511899}
   numSteps: 3
+  canvasGameObject: {fileID: 827325376}
 --- !u!54 &463380868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -382,7 +383,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 118
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &463380869
 SphereCollider:
