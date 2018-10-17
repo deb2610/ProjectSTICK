@@ -431,9 +431,17 @@ MonoBehaviour:
   monsterSpawnDistance: 5
   monsterPrefab: {fileID: 1769894005351886, guid: 46270346007ca804385505eb7945f498,
     type: 2}
+  monsterSpeed: 0.1
+  monsterChaseSpeed: 3
+  monsterInWallSpeed: 1
+  monsterChaseRange: 3
+  monsterRange: 8
+  monsterMaxHealth: 100
+  monsterBurnSpeed: 0.5
+  monsterKillDistance: 3
+  monsterKillAngle: 22.5
   monsterSpawnRate: 2
   maxMonsters: 3
-  monsterSpeed: 0.1
 --- !u!114 &463380867
 MonoBehaviour:
   m_ObjectHideFlags: 0

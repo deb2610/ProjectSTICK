@@ -10,10 +10,21 @@ public class PlayerGameMechanics : MonoBehaviour
     public float monsterSpawnDistance = 5;
     public GameObject monsterPrefab;
     public List<GameObject> Monsters { get; private set; }
+
+    // Variables to pass along to the monsters
+    public float monsterSpeed = 0.1f;
+    public float monsterChaseSpeed = 3.0f; // Units per second speed to LERP to while chasing
+    public float monsterInWallSpeed = 1.0f; // Units per second speed while in walls
+    public float monsterChaseRange = 3.0f; // Units distance to start chasing from
+    public float monsterRange = 8.0f;   // If the monster gets this far away from the player, it will despawn
+    public float monsterMaxHealth = 100.0f; // Percent
+    public float monsterBurnSpeed = 0.5f;   // The number of seconds it takes to kill a monster
+    public float monsterKillDistance = 2.5f;
+    public float monsterKillAngle = 22.5f; //degrees
+
     public float monsterSpawnRate = 2; //% chance
     private float timeOfLastMonster = 0;
     public int maxMonsters = 5;
-    public float monsterSpeed = 0.1f;
 
     private int currentLife;
     private List<GameObject> monsters;
@@ -57,14 +68,22 @@ public class PlayerGameMechanics : MonoBehaviour
         Vector3 monsterSpawn = new Vector3(monsterSpawnDistance, 0, 0);
         monsterSpawn = Quaternion.AngleAxis(Random.value * 360, Vector3.forward) * monsterSpawn;
 
-        Debug.Log(transform.position);
-
         // Instantiate the monster
         GameObject newMonster = Instantiate(monsterPrefab, transform.position + monsterSpawn, Quaternion.identity);
         MonsterScript monsterController = newMonster.AddComponent(typeof(MonsterScript)) as MonsterScript;
+
+        // Forward all of the settings from the Unity editor
         monsterController.player = gameObject;
         monsterController.monsterSpeed = monsterSpeed;
-       
+        monsterController.monsterChaseSpeed = monsterChaseSpeed;
+        monsterController.monsterInWallSpeed = monsterInWallSpeed;
+        monsterController.monsterChaseRange = monsterChaseRange;
+        monsterController.monsterRange = monsterRange;
+        monsterController.monsterMaxHealth = monsterMaxHealth;
+        monsterController.monsterBurnSpeed = monsterBurnSpeed;
+        monsterController.monsterKillDistance = monsterKillDistance;
+        monsterController.monsterKillAngle = monsterKillAngle;
+
         Monsters.Add(newMonster);
     }
 

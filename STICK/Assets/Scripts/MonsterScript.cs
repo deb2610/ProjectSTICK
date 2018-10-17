@@ -12,15 +12,19 @@ public class MonsterScript : MonoBehaviour
     public GameObject player;
     private float decidedSpeed;
 
+    public float monsterMaxHealth = 100.0f; // Percent
+    public float monsterBurnSpeed = 0.5f;   // The number of seconds it takes to kill a monster
+    private float myHealth;
+
     public float monsterKillDistance = 2.5f;
-    public float monsterKillAngle = 15.0f; //degrees
+    public float monsterKillAngle = 22.5f; //degrees
 
     private Vector3 directionOfPlayer;
 
     // Use this for initialization
     void Start()
     {
-
+        myHealth = monsterMaxHealth;
     }
 
     // Update is called once per frame
@@ -28,7 +32,8 @@ public class MonsterScript : MonoBehaviour
     {
         CalculateMovementSpeed();
         SeekPlayer();
-        CheckKill();
+        CheckFlashlight();
+        CheckDeath();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -61,11 +66,10 @@ public class MonsterScript : MonoBehaviour
         movement.z = 0;
         movement.Normalize();
         movement *= distanceTraveled;
-        Debug.Log("Moving monster towards player: " + movement);
         gameObject.transform.Translate(movement);
     }
 
-    void CheckKill()
+    void CheckFlashlight()
     {
         if (directionOfPlayer.magnitude <= monsterKillDistance)
         {
@@ -75,13 +79,21 @@ public class MonsterScript : MonoBehaviour
             float angleOffset = Mathf.Abs(myAngle);
             if (angleOffset <= monsterKillAngle)
             {
-                Debug.Log("Monster killed by Flashlight");
-                KillMonster();
+                float damageDone = Time.deltaTime / monsterBurnSpeed * monsterMaxHealth;
+                myHealth -= damageDone;
+                Debug.Log(myHealth);
             }
         }
+    }
+
+    private void CheckDeath()
+    {
         if (directionOfPlayer.magnitude > monsterRange)
         {
-            Debug.Log("Monster killed by range");
+            KillMonster();
+        }
+        if (myHealth <= 0)
+        {
             KillMonster();
         }
     }
