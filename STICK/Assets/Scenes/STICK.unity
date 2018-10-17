@@ -333,8 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d76d7044e43d59409ad3defdacf8b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
-  sprintMultiplier: 2
+  movementSpeed: 1.5
+  sprintMultiplier: 2.5
   joystickTolerance: 0.001
   player: {fileID: 463380862}
 --- !u!114 &463380866
@@ -382,7 +382,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 118
   m_CollisionDetection: 0
 --- !u!135 &463380869
 SphereCollider:
@@ -1816,7 +1816,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.9247071, b: 0.4669811, a: 1}
-  m_Intensity: 4.03
+  m_Intensity: 2
   m_Range: 4
   m_SpotAngle: 30
   m_CookieSize: 10
