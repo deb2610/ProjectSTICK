@@ -9,6 +9,8 @@ public class PlayerControler : MonoBehaviour {
     public float joystickTolerance = 0.05f; // Lower equals more sensitive
     public GameObject player;
     private Transform playerModel;
+    public float flashlightAngularMomentum = 0.5f; // ¯\_(ツ)_/¯
+    private float FlashlightAngularVelocity;
 
     private float cameraOffset;
     private bool useMouse = true;
@@ -21,7 +23,8 @@ public class PlayerControler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         playerModel = player.transform.Find("PlayerModel");
-	}
+        FlashlightAngularVelocity = 0.0f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,7 +39,7 @@ public class PlayerControler : MonoBehaviour {
         float sprinting = 1;
         
         // We're removing sprinting for now. It is over powered and now that the player's base speed is faster,
-        // it's not as necessary
+        // it's not as necessary. It might be a powerup in the future so I'm leaving it in.
         /* Input.GetKey(KeyCode.LeftShift)   // Left shift
             || Input.GetKey(KeyCode.RightShift)             // Right shift
             || triggerHeld > 0.1                            // Left trigger
@@ -95,6 +98,11 @@ public class PlayerControler : MonoBehaviour {
         // Kill all momentum
         Rigidbody rigidbody = player.GetComponent(typeof(Rigidbody)) as Rigidbody;
         rigidbody.velocity = Vector3.zero;
+    }
+
+    private void RotateInDirection(float rotation)
+    {
+
     }
 
     private void LookAtMouse()
