@@ -33,11 +33,15 @@ public class PlayerControler : MonoBehaviour {
 
         // Keyboard Controls
         float triggerHeld = Input.GetAxis("SprintAxis");
-        float sprinting = Input.GetKey(KeyCode.LeftShift)   // Left shift
+        float sprinting = 1;
+        
+        // We're removing sprinting for now. It is over powered and now that the player's base speed is faster,
+        // it's not as necessary
+        /* Input.GetKey(KeyCode.LeftShift)   // Left shift
             || Input.GetKey(KeyCode.RightShift)             // Right shift
             || triggerHeld > 0.1                            // Left trigger
             || triggerHeld < -0.1                           // Right trigger
-            ? sprintMultiplier : 1;
+            ? sprintMultiplier : 1;*/
         float movementDistance = Time.deltaTime * movementSpeed * sprinting;
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
