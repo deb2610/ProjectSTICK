@@ -203,44 +203,9 @@ Prefab:
       propertyPath: playerWithFlashlight
       value: 
       objectReference: {fileID: 463380862}
-    - target: {fileID: 4486384412707334, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 108743481362179470, guid: 8478ba1e91faa304aa4c5003f41855d0,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 108743481362179470, guid: 8478ba1e91faa304aa4c5003f41855d0,
-        type: 2}
-      propertyPath: m_Range
-      value: 1.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 108743481362179470, guid: 8478ba1e91faa304aa4c5003f41855d0,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.5896226
-      objectReference: {fileID: 0}
-    - target: {fileID: 108743481362179470, guid: 8478ba1e91faa304aa4c5003f41855d0,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108743481362179470, guid: 8478ba1e91faa304aa4c5003f41855d0,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.5896226
-      objectReference: {fileID: 0}
-    - target: {fileID: 114699304068785458, guid: 8478ba1e91faa304aa4c5003f41855d0,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114699304068785458, guid: 8478ba1e91faa304aa4c5003f41855d0,
-        type: 2}
-      propertyPath: speed
-      value: 1
+    - target: {fileID: 1453320103751014, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
@@ -354,7 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logo: {fileID: 1186722603}
   background: {fileID: 932863119}
-  logoFadeOutTime: 2
+  logoFadeOutTime: 1
 --- !u!1 &463380862
 GameObject:
   m_ObjectHideFlags: 0
