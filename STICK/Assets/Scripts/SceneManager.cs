@@ -53,15 +53,19 @@ public class SceneManager : MonoBehaviour
                         break;
                     case 'S':
                         startIndex = new Vector3(i, j, 0);
+                        //Vector3 colliderPos = new Vector3(1 * mazeScale, j * mazeScale, 0) + mazeOffset;
+                        //GameObject trigger = Instantiate(colliderPrefab, colliderPos, Quaternion.identity);
+                        //trigger.GetComponent<DialogueTrigger>().dialogueIndex = indexTracker;
+                        //indexTracker++;
                         break;
                     case 'E':
                         Vector3 goalPos = new Vector3(i * mazeScale, j * mazeScale, 0.15f) + mazeOffset;
                         goal.transform.position = goalPos;
                         break;
                     case 'T':
-                        Vector3 colliderPos = new Vector3(1 * mazeScale, j * mazeScale, 0) + mazeOffset;
-                        GameObject trigger = Instantiate(colliderPrefab, colliderPos, Quaternion.identity);
-                        trigger.GetComponent<DialogueTrigger>().dialogueIndex = indexTracker;
+                        Vector3 colliderP = new Vector3(1 * mazeScale, j * mazeScale, 0) + mazeOffset;
+                        GameObject trig = Instantiate(colliderPrefab, colliderP, Quaternion.identity);
+                        trig.GetComponent<DialogueTrigger>().dialogueIndex = indexTracker;
                         indexTracker++;
                         break;
                 }

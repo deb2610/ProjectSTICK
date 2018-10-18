@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour {
 
     public List<Dialogue> dialogueRepo;
 
+    public Button theButton;
     public Text nameText;
     public Text dialogueText;
 
@@ -20,12 +21,15 @@ public class DialogueManager : MonoBehaviour {
     private Queue<string> sentences; //tracks sentences
 	// Use this for initialization
 	void Start () {
+
         sentences = new Queue<string>();
+
 	}
 	
     public void StartDialogue(Dialogue dialogue)
     {
-        dialogueText.name = dialogue.name;
+
+        nameText.text = dialogue.nameT;
         sentences.Clear();
 
         foreach(string s in dialogue.sentences)
