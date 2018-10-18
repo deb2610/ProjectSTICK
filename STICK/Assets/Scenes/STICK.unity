@@ -159,6 +159,57 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc65da77297698c4ba5028e478535d88, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &220269931
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4085593792885964, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -47.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085593792885964, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085593792885964, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085593792885964, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085593792885964, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085593792885964, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085593792885964, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085593792885964, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114699304068785458, guid: 8478ba1e91faa304aa4c5003f41855d0,
+        type: 2}
+      propertyPath: playerWithFlashlight
+      value: 
+      objectReference: {fileID: 463380862}
+    - target: {fileID: 1453320103751014, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8478ba1e91faa304aa4c5003f41855d0, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &247985422
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logo: {fileID: 1186722603}
   background: {fileID: 932863119}
+<<<<<<< HEAD
   logoFadeOutTime: 2
 --- !u!1 &368619071
 GameObject:
@@ -344,6 +396,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+=======
+  logoFadeOutTime: 1
+>>>>>>> powerup
 --- !u!1 &463380862
 GameObject:
   m_ObjectHideFlags: 0
