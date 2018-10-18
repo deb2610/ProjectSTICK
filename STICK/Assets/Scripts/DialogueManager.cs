@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour {
 	
     public void StartDialogue(Dialogue dialogue)
     {
-        nameText.text = dialogue.name;
+        dialogueText.name = dialogue.name;
         sentences.Clear();
 
         foreach(string s in dialogue.sentences)
@@ -60,6 +60,7 @@ public class DialogueManager : MonoBehaviour {
     }
     public void EndDialogue()
     {
-
+        nameText.text = "";
+        dialogueText.text = "";
     }
 }

@@ -26,8 +26,10 @@ public class SceneManager : MonoBehaviour
     public GameObject player;
     public GameObject mainCamera;
     public GameObject goal;
+    public GameObject colliderPrefab;
     public TextAsset mazeFile;
     private Vector3 mazeOffset;
+    private int indexTracker;
     private float mazeScale; // Represents the width in Unity units of one maze block
     private Vector3 startIndex;
 
@@ -38,6 +40,7 @@ public class SceneManager : MonoBehaviour
         mazeScale = wallBlockPrefab.transform.lossyScale.x;
         mazeOffset = new Vector3(-MazeArray.GetLength(0) * mazeScale / 2, -MazeArray.GetLength(1) * mazeScale / 2, 9.5f);
         startIndex = new Vector3(0, 1, 0);
+        indexTracker = 0;
         for (int i = 0; i < MazeArray.GetLength(0); i++)
         {
             for (int j = 0; j < MazeArray.GetLength(1); j++)
@@ -54,6 +57,12 @@ public class SceneManager : MonoBehaviour
                     case 'E':
                         Vector3 goalPos = new Vector3(i * mazeScale, j * mazeScale, 0.15f) + mazeOffset;
                         goal.transform.position = goalPos;
+                        break;
+                    case 'T':
+                        Vector3 colliderPos = new Vector3(1 * mazeScale, j * mazeScale, 0) + mazeOffset;
+                        GameObject trigger = Instantiate(colliderPrefab, colliderPos, Quaternion.identity);
+                        trigger.GetComponent<DialogueTrigger>().dialogueIndex = indexTracker;
+                        indexTracker++;
                         break;
                 }
                 if (MazeArray[i, j] == '0')
