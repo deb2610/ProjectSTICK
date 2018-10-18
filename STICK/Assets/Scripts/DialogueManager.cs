@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
+    public List<Dialogue> dialogueRepo;
+
     public Text nameText;
     public Text dialogueText;
+
+    /*Index Refrence
+     * 0 - Intro
+     * 1 - Instructions
+     * 
+     * */
+    
 
     private Queue<string> sentences; //tracks sentences
 	// Use this for initialization
