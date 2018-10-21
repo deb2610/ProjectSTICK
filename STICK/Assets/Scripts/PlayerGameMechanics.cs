@@ -39,8 +39,10 @@ public class PlayerGameMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.DrawRay(transform.position,Vector3.right,Color.yellow);
+        
         // Maybe make a spookie boi
+
         if (
                 Time.time > 15f &&  // Don't start spawning monsters until 15 seconds in
                 Monsters.Count < maxMonsters && // Don't spawn more than MaxMonsters

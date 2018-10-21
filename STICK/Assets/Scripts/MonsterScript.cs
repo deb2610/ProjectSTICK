@@ -21,6 +21,9 @@ public class MonsterScript : MonoBehaviour
 
     private Vector3 directionOfPlayer;
 
+    private float angleBetween;
+    public float angelFix;
+
     // Use this for initialization
     void Start()
     {
@@ -30,6 +33,25 @@ public class MonsterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //transorm correction
+        gameObject.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y, 9.75f);
+        //transform.LookAt(player.transform);
+
+        Vector3 distanceVector = player.transform.position - transform.position;
+        Debug.DrawRay(transform.position, distanceVector, Color.green);
+
+        if (transform.position.y > player.transform.position.y)
+        {
+            float angleBetween = Vector3.Angle(Vector3.right, -distanceVector);
+            gameObject.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, angleBetween - 90);
+        }
+        else {
+            float angleBetween = Vector3.Angle(Vector3.right, distanceVector);
+            gameObject.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, angleBetween + 90);
+        }
+        Debug.DrawRay(transform.position, transform.forward,Color.red);
+
+
         CalculateMovementSpeed();
         SeekPlayer();
         CheckFlashlight();
@@ -113,7 +135,7 @@ public class MonsterScript : MonoBehaviour
 
     void AttackPlayer() 
     {
-        PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
+        PlayerGameMechanics playerGameMechanics = player.GetComponent<PlayerGameMechanics>();
         playerGameMechanics.AttackedByMonster(gameObject);
 
         // Remove this game object
