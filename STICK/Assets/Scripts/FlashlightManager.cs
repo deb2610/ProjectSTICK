@@ -100,4 +100,9 @@ public class FlashlightManager : MonoBehaviour {
         // Update UI
         FlashLightImage.overrideSprite = Resources.Load<Sprite>(FlashlightSpriteLocation + currentStep.ToString());
     }
+
+    public bool IsBatteryFull()
+    {
+        return numSteps == currentStep;
+    }
 }

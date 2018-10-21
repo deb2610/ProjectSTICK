@@ -27,6 +27,7 @@ public class SceneManager : MonoBehaviour
     public GameObject mainCamera;
     public GameObject goal;
     public GameObject colliderPrefab;
+    public GameObject batteryPrefab;
     public TextAsset mazeFile;
     private Vector3 mazeOffset;
     private int indexTracker;
@@ -67,6 +68,12 @@ public class SceneManager : MonoBehaviour
                         GameObject trig = Instantiate(colliderPrefab, colliderP, Quaternion.identity);
                         trig.GetComponent<DialogueTrigger>().dialogueIndex = indexTracker;
                         indexTracker++;
+                        break;
+                    case 'B':
+                        Vector3 batteryPos = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
+                        GameObject newBattery = Instantiate(batteryPrefab, batteryPos, Quaternion.identity);
+                        BatteryScript batteryScript = newBattery.GetComponent(typeof(BatteryScript)) as BatteryScript;
+                        batteryScript.playerWithFlashlight = player.transform.parent.gameObject;
                         break;
                 }
                 if (MazeArray[i, j] == '0')

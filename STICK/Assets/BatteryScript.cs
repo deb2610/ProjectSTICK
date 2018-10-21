@@ -70,8 +70,11 @@ public class BatteryScript : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        playerWithFlashlight.GetComponent<FlashlightManager>().RestoreHealth(1);
-        gameObject.SetActive(false);
-
+        FlashlightManager flashlight = playerWithFlashlight.GetComponent<FlashlightManager>();
+        if (!flashlight.IsBatteryFull())
+        {
+            flashlight.RestoreHealth(1);
+            Destroy(gameObject);
+        }
     }
 }
