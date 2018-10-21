@@ -14,7 +14,18 @@ public class DialogueManager : MonoBehaviour {
     /*Index Refrence
      * 0 - Intro
      * 1 - Instructions
-     * 
+     * 2 - That flashlight wont help you for long
+     * 3 - What was that sound
+     * 4 - i can hear you breathing
+     * 5- come out come out
+     * 6 - jacket
+     * 7 - smell a human
+     * 8 - found your mac and cheese
+     * 9 -
+     * 10 - 
+     * 11 - wowie
+     * 12 - coming to find you
+     * 13 - cheesy goodness
      * */
     
 

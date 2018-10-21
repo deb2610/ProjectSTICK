@@ -412,6 +412,17 @@ GameObject:
   - component: {fileID: 463380872}
   - component: {fileID: 463380871}
   - component: {fileID: 463380870}
+  - component: {fileID: 463380883}
+  - component: {fileID: 463380882}
+  - component: {fileID: 463380881}
+  - component: {fileID: 463380880}
+  - component: {fileID: 463380879}
+  - component: {fileID: 463380878}
+  - component: {fileID: 463380877}
+  - component: {fileID: 463380876}
+  - component: {fileID: 463380875}
+  - component: {fileID: 463380874}
+  - component: {fileID: 463380873}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -547,7 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameT: 
+  nameT: You
   sentences:
   - "There is an indicator at the top of my view that shows my flashlight's  power
     level. I bet there are things in the woods that can boost that back up if I get
@@ -565,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameT: Intro
+  nameT: You
   sentences:
   - "Gosh it\u2019s dark and cold out here. I bet it wouldn\u2019t be this bad if
     I was still at home.\r"
@@ -595,12 +606,175 @@ MonoBehaviour:
   dialogueRepo:
   - {fileID: 463380871}
   - {fileID: 463380870}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 463380883}
+  - {fileID: 463380882}
+  - {fileID: 463380881}
+  - {fileID: 463380880}
+  - {fileID: 463380879}
+  - {fileID: 463380878}
+  - {fileID: 463380877}
+  - {fileID: 463380876}
+  - {fileID: 463380875}
+  - {fileID: 463380874}
+  - {fileID: 463380873}
   theButton: {fileID: 0}
   nameText: {fileID: 368619074}
   dialogueText: {fileID: 1865905928}
+--- !u!114 &463380873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: You
+  sentences:
+  - Mmmmm cheesy goodness
+--- !u!114 &463380874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: Monster
+  sentences:
+  - I'm coming to find you...
+--- !u!114 &463380875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: You
+  sentences:
+  - Wowie, it sure smells like mac and cheese over here
+--- !u!114 &463380876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: You
+  sentences:
+  - I hope that was just the wind...
+--- !u!114 &463380877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: Monster
+  sentences:
+  - Hey... I found your mac and cheese... just come over here
+--- !u!114 &463380878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: Monster
+  sentences:
+  - I smell a human... delicious...
+--- !u!114 &463380879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: You
+  sentences:
+  - I should have brought another jacket. It's so cold.
+--- !u!114 &463380880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: Monster
+  sentences:
+  - Come out, come out, wherever you are..
+  - Or stay, I will find you either way :)
+--- !u!114 &463380881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: Monster
+  sentences:
+  - I can hear you breathing...
+--- !u!114 &463380882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: You
+  sentences:
+  - What was that sound???
+--- !u!114 &463380883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463380862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6aca283b06f17642aba396cd526c75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameT: Monster
+  sentences:
+  - That flashlight won't help you for long...
 --- !u!1 &520383153
 GameObject:
   m_ObjectHideFlags: 0
