@@ -32,7 +32,7 @@ public class PlayerControler : MonoBehaviour {
         }
 
         // Keyboard Controls
-        float triggerHeld = Input.GetAxis("SprintAxis");
+        //float triggerHeld = Input.GetAxis("SprintAxis");
         float sprinting = 1;
         
         // We're removing sprinting for now. It is over powered and now that the player's base speed is faster,

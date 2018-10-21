@@ -34,28 +34,14 @@ public class MonsterScript : MonoBehaviour
     void Update()
     {
         //transorm correction
-        gameObject.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y, 9.75f);
+        //gameObject.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y, 9.75f);
         //transform.LookAt(player.transform);
-
-        Vector3 distanceVector = player.transform.position - transform.position;
-        Debug.DrawRay(transform.position, distanceVector, Color.green);
-
-        if (transform.position.y > player.transform.position.y)
-        {
-            float angleBetween = Vector3.Angle(Vector3.right, -distanceVector);
-            gameObject.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, angleBetween - 90);
-        }
-        else {
-            float angleBetween = Vector3.Angle(Vector3.right, distanceVector);
-            gameObject.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, angleBetween + 90);
-        }
-        Debug.DrawRay(transform.position, transform.forward,Color.red);
-
 
         CalculateMovementSpeed();
         SeekPlayer();
         CheckFlashlight();
         CheckDeath();
+        LookAtPlayer();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -96,11 +82,12 @@ public class MonsterScript : MonoBehaviour
         if (directionOfPlayer.magnitude <= monsterKillDistance)
         {
             PlayerControler playerController = player.GetComponent(typeof(PlayerControler)) as PlayerControler;
-
+            
             float myAngle = Vector3.Angle(playerController.FlashlightAngle, directionOfPlayer);
             float angleOffset = Mathf.Abs(myAngle);
             if (angleOffset <= monsterKillAngle)
             {
+                // TODO: Put Particle Emiter here
                 float damageDone = Time.deltaTime / monsterBurnSpeed * monsterMaxHealth;
                 myHealth -= damageDone;
                 Debug.Log(myHealth);
@@ -118,6 +105,23 @@ public class MonsterScript : MonoBehaviour
         {
             KillMonster();
         }
+    }
+
+    void LookAtPlayer()
+    {
+        //Debug.DrawRay(transform.position, distanceVector, Color.green);
+        GameObject sprite = gameObject.transform.Find("spookyboi-x4").gameObject;
+        if (transform.position.y > player.transform.position.y)
+        {
+            float angleBetween = Vector3.Angle(Vector3.right, -directionOfPlayer);
+            sprite.transform.eulerAngles = new Vector3(0, 0, angleBetween - 90);
+        }
+        else
+        {
+            float angleBetween = Vector3.Angle(Vector3.right, directionOfPlayer);
+            sprite.transform.eulerAngles = new Vector3(0, 0, angleBetween + 90);
+        }
+        //Debug.DrawRay(transform.position, transform.forward,Color.red);
     }
 
     /// <summary>
