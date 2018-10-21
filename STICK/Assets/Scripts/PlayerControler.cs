@@ -59,6 +59,10 @@ public class PlayerControler : MonoBehaviour {
         {
             transform.Translate(new Vector3(movementDistance, 0, 0));
         }
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            GetComponent<SceneManager>().GetComponent<DialogueManager>().DisplayNextSentence();
+        }
 
         // Controller Support
         float xJoysticMove = Input.GetAxis("LeftJoystickX");

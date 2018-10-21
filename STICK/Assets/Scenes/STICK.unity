@@ -560,11 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameT: You
   sentences:
-  - "There is an indicator at the top of my view that shows my flashlight's  power
-    level. I bet there are things in the woods that can boost that back up if I get
-    hit by a monster and it gets lowered.\r"
-  - "Walking appears to be easiest using the arrow keys or the left joystick and I
-    can control my flashlight by rotating the mouse or the right joystick.\r"
+  - Annoying gross.. damp... leaves and cold wind.. ugh
 --- !u!114 &463380871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,7 +586,12 @@ MonoBehaviour:
   - 'The monsters will chase you but legend has it that they perish in the light. '
   - "It's a good thing I packed this flashlight so I can see where I\u2019m going
     and hopefully protect myself.\r"
-  - "My mac and cheese must be somewhere in here.\r"
+  - There is an indicator at the top of my view that shows my flashlight's  power
+    level. I bet there are things in the woods that can boost that back up if I get
+    hit by a monster and it gets lowered.
+  - "Walking appears to be easiest using the arrow keys or the left joystick and I
+    can control my flashlight by rotating the mouse or the right joystick.\r"
+  - "\rMy mac and cheese must be somewhere in here.\r"
   - "I should get going, before the monsters begin to know I\u2019m here.\r"
 --- !u!114 &463380872
 MonoBehaviour:
@@ -617,7 +618,7 @@ MonoBehaviour:
   - {fileID: 463380875}
   - {fileID: 463380874}
   - {fileID: 463380873}
-  theButton: {fileID: 0}
+  theButton: {fileID: 809848450}
   nameText: {fileID: 368619074}
   dialogueText: {fileID: 1865905928}
 --- !u!114 &463380873
@@ -1110,6 +1111,7 @@ GameObject:
   - component: {fileID: 809848452}
   - component: {fileID: 809848451}
   - component: {fileID: 809848450}
+  - component: {fileID: 809848453}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1222,6 +1224,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 809848448}
   m_CullTransparentMesh: 0
+--- !u!225 &809848453
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809848448}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &827325376
 GameObject:
   m_ObjectHideFlags: 0

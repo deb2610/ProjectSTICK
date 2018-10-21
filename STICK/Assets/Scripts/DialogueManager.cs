@@ -34,12 +34,12 @@ public class DialogueManager : MonoBehaviour {
 	void Start () {
 
         sentences = new Queue<string>();
-
+        theButton.GetComponent<CanvasGroup>().alpha = 0.00f;
 	}
 	
     public void StartDialogue(Dialogue dialogue)
     {
-
+        theButton.GetComponent<CanvasGroup>().alpha = 1.00f;
         nameText.text = dialogue.nameT;
         sentences.Clear();
 
@@ -75,6 +75,7 @@ public class DialogueManager : MonoBehaviour {
     }
     public void EndDialogue()
     {
+        theButton.GetComponent<CanvasGroup>().alpha = 0.00f;
         nameText.text = "";
         dialogueText.text = "";
     }
