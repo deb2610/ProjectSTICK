@@ -21,11 +21,9 @@ public class OpeningAnimationScript : MonoBehaviour {
     void Update () {
         if (playIntro)
         {
-            if (logoFadeOutTime > 0.0f)
+            if (logoFadeOutTime >= Time.time)
             {
                 logo.GetComponent<CanvasGroup>().alpha += .01f;
-                logoFadeOutTime -= .01f;
-
             }
             else
             {

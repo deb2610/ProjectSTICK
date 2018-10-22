@@ -12,6 +12,7 @@ public class PlayerControler : MonoBehaviour {
 
     private float cameraOffset;
     private bool useMouse = true;
+    private bool playerHasControl = true;
 
     /// <summary>
     /// A vector pointing in the direction of the flashlight
@@ -25,8 +26,16 @@ public class PlayerControler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (playerHasControl)
+        {
+            ProcessInput();
+        }
+    }
+
+    void ProcessInput()
+    {
         // Check for input toggle
-        if(Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             useMouse = !useMouse;
         }
@@ -34,7 +43,7 @@ public class PlayerControler : MonoBehaviour {
         // Keyboard Controls
         //float triggerHeld = Input.GetAxis("SprintAxis");
         float sprinting = 1;
-        
+
         // We're removing sprinting for now. It is over powered and now that the player's base speed is faster,
         // it's not as necessary
         /* Input.GetKey(KeyCode.LeftShift)   // Left shift
@@ -43,7 +52,7 @@ public class PlayerControler : MonoBehaviour {
             || triggerHeld < -0.1                           // Right trigger
             ? sprintMultiplier : 1;*/
         float movementDistance = Time.deltaTime * movementSpeed * sprinting;
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(new Vector3(0, movementDistance, 0));
         }
@@ -59,7 +68,7 @@ public class PlayerControler : MonoBehaviour {
         {
             transform.Translate(new Vector3(movementDistance, 0, 0));
         }
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             GetComponent<SceneManager>().GetComponent<DialogueManager>().DisplayNextSentence();
         }
@@ -73,14 +82,13 @@ public class PlayerControler : MonoBehaviour {
         Vector3 joystickDirection = new Vector3(xJoysticMove, yJoysticMove, 0);
         if (joystickDirection.magnitude > joystickTolerance)
         {
-            if(joystickDirection.magnitude > 1)
+            if (joystickDirection.magnitude > 1)
             {
                 // If the player starts to use a joystick, assume that looking at the mouse is unnecessary
                 useMouse = false;
                 joystickDirection = joystickDirection.normalized;
             }
             joystickDirection = joystickDirection * movementDistance;
-            Debug.Log("Adjusted Vector:" + joystickDirection);
             transform.Translate(joystickDirection);
         }
         joystickDirection = new Vector3(xJoysticLook, yJoysticLook, 0);
@@ -93,7 +101,7 @@ public class PlayerControler : MonoBehaviour {
             float rotation = Mathf.Rad2Deg * Mathf.Atan2(yJoysticLook, xJoysticLook) - 90;
             playerModel.eulerAngles = new Vector3(0, 0, rotation);
         }
-        
+
         FlashlightAngle = gameObject.transform.GetChild(0).up * -1;
 
         // Kill all momentum
@@ -108,5 +116,15 @@ public class PlayerControler : MonoBehaviour {
         Vector3 flashlightDirection = mouse - screenCenter;
         float rotation = Mathf.Rad2Deg * Mathf.Atan2(flashlightDirection.y, flashlightDirection.x) - 90;
         playerModel.eulerAngles = new Vector3(0, 0, rotation);
+    }
+
+    public void GivePlayerControl()
+    {
+        playerHasControl = true;
+    }
+
+    public void TakePlayerControl()
+    {
+        playerHasControl = false;
     }
 }

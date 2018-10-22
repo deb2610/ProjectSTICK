@@ -10,16 +10,17 @@ public class MonsterScript : MonoBehaviour
     public float monsterChaseRange = 3.0f; // Units distance to start chasing from
     public float monsterRange = 8.0f;   // If the monster gets this far away from the player, it will despawn
     public GameObject player;
-    private float decidedSpeed;
+    protected float decidedSpeed;
 
     public float monsterMaxHealth = 100.0f; // Percent
     public float monsterBurnSpeed = 0.5f;   // The number of seconds it takes to kill a monster
-    private float myHealth;
+    protected float myHealth;
 
     public float monsterKillDistance = 2.5f;
     public float monsterKillAngle = 22.5f; //degrees
 
-    private Vector3 directionOfPlayer;
+    protected Vector3 directionOfPlayer;
+    protected Vector3 playerPos;
 
     private float angleBetween;
     public float angelFix;
@@ -43,15 +44,16 @@ public class MonsterScript : MonoBehaviour
         CheckDeath();
         LookAtPlayer();
     }
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         AttackPlayer();
     }
 
-    void CalculateMovementSpeed()
+    protected virtual void CalculateMovementSpeed()
     {
         SceneManager sceneManager = player.GetComponent(typeof(SceneManager)) as SceneManager;
         directionOfPlayer = player.transform.position - gameObject.transform.position;
+        playerPos = player.transform.position;
         if(sceneManager.IsPointInMazeBlock(transform.position))
         {
             decidedSpeed = monsterInWallSpeed;
@@ -66,7 +68,7 @@ public class MonsterScript : MonoBehaviour
         }
     }
 
-    void SeekPlayer()
+    protected virtual void SeekPlayer()
     {
         // Seek the player
         float distanceTraveled = decidedSpeed * Time.deltaTime;
@@ -77,7 +79,7 @@ public class MonsterScript : MonoBehaviour
         gameObject.transform.Translate(movement);
     }
 
-    void CheckFlashlight()
+    protected virtual void CheckFlashlight()
     {
         if (directionOfPlayer.magnitude <= monsterKillDistance)
         {
@@ -87,15 +89,19 @@ public class MonsterScript : MonoBehaviour
             float angleOffset = Mathf.Abs(myAngle);
             if (angleOffset <= monsterKillAngle)
             {
-                // TODO: Put Particle Emiter here
-                float damageDone = Time.deltaTime / monsterBurnSpeed * monsterMaxHealth;
-                myHealth -= damageDone;
-                Debug.Log(myHealth);
+                TakeDamage();
             }
         }
     }
+    
+    protected void TakeDamage()
+    {
+        // TODO: Put Particle Emiter here
+        float damageDone = Time.deltaTime / monsterBurnSpeed * monsterMaxHealth;
+        myHealth -= damageDone;
+    }
 
-    private void CheckDeath()
+    protected virtual void CheckDeath()
     {
         if (directionOfPlayer.magnitude > monsterRange)
         {
@@ -107,11 +113,11 @@ public class MonsterScript : MonoBehaviour
         }
     }
 
-    void LookAtPlayer()
+    protected virtual void LookAtPlayer()
     {
         //Debug.DrawRay(transform.position, distanceVector, Color.green);
         GameObject sprite = gameObject.transform.Find("spookyboi-x4").gameObject;
-        if (transform.position.y > player.transform.position.y)
+        if (transform.position.y > playerPos.y)
         {
             float angleBetween = Vector3.Angle(Vector3.right, -directionOfPlayer);
             sprite.transform.eulerAngles = new Vector3(0, 0, angleBetween - 90);
@@ -127,7 +133,7 @@ public class MonsterScript : MonoBehaviour
     /// <summary>
     /// This method removes the game object. It's a separate method in case we want to add animation later
     /// </summary>
-    void KillMonster()
+    protected virtual void KillMonster()
     {
         // Let the player object know that there is one fewer monsters
         PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
@@ -137,7 +143,7 @@ public class MonsterScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void AttackPlayer() 
+    protected virtual void AttackPlayer() 
     {
         PlayerGameMechanics playerGameMechanics = player.GetComponent<PlayerGameMechanics>();
         playerGameMechanics.AttackedByMonster(gameObject);

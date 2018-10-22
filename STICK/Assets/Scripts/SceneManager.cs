@@ -28,6 +28,8 @@ public class SceneManager : MonoBehaviour
     public GameObject goal;
     public GameObject colliderPrefab;
     public GameObject batteryPrefab;
+    public GameObject tutorialMonster;
+    public GameObject tutorialLamp;
     public TextAsset mazeFile;
     private Vector3 mazeOffset;
     private int indexTracker;
@@ -42,6 +44,8 @@ public class SceneManager : MonoBehaviour
         mazeOffset = new Vector3(-MazeArray.GetLength(0) * mazeScale / 2, -MazeArray.GetLength(1) * mazeScale / 2, 9.5f);
         startIndex = new Vector3(0, 1, 0);
         indexTracker = 0;
+        TutorialMonster tutorialMonsterScript = tutorialMonster.GetComponent(typeof(TutorialMonster)) as TutorialMonster;
+
         for (int i = 0; i < MazeArray.GetLength(0); i++)
         {
             for (int j = 0; j < MazeArray.GetLength(1); j++)
@@ -75,6 +79,20 @@ public class SceneManager : MonoBehaviour
                         BatteryScript batteryScript = newBattery.GetComponent(typeof(BatteryScript)) as BatteryScript;
                         batteryScript.playerWithFlashlight = player.transform.parent.gameObject;
                         break;
+                    case '*':
+                        Vector3 tutorialPos = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
+                        // Tell the monster to seek here and shift the lamp to this position;
+                        tutorialMonsterScript.positionToSeek = tutorialPos;
+                        tutorialPos.y += 1.5f;
+                        tutorialPos.x += 0.2f;
+                        tutorialLamp.transform.position = tutorialPos;
+                        break;
+                    case '!':
+                        Vector3 tutMonsterSpawn = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
+                        tutorialMonster.transform.position = tutMonsterSpawn;
+                        tutorialMonsterScript.positionToFlee = tutMonsterSpawn;
+                        Debug.Log("Tut mons start: " + tutMonsterSpawn);
+                        break;
                 }
                 if (MazeArray[i, j] == '0')
                 {
@@ -105,7 +123,6 @@ public class SceneManager : MonoBehaviour
         // Deal with unix/windows line endings
         stringMaze.Replace("\r", "");
         string[] rows = stringMaze.Split('\n');
-        Debug.Log("Creating List");
         char[,] charMaze = new char[rows.Length, rows[0].Length];
         for (int i = 0; i < rows.Length; i++)
         {

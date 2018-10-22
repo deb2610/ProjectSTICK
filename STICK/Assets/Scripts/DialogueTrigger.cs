@@ -14,6 +14,6 @@ public class DialogueTrigger : MonoBehaviour {
     }
     void OnTriggerEnter()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogues[dialogueIndex]);
+        //FindObjectOfType<DialogueManager>().StartDialogue(dialogues[dialogueIndex]);
     }
 }

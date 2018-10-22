@@ -29,7 +29,6 @@ public class FlashlightManager : MonoBehaviour {
         GameObject flashLightSprite = canvasGameObject.transform.Find("Flash").gameObject;
         FlashLightImage = flashLightSprite.GetComponent(typeof(Image)) as Image;
         string flashlightLoc = FlashlightSpriteLocation + currentStep.ToString();
-        Debug.Log(flashlightLoc);
         FlashLightImage.overrideSprite = Resources.Load<Sprite>(FlashlightSpriteLocation + currentStep.ToString());
 
         // Grab the light objects
