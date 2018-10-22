@@ -28,6 +28,7 @@ public class PlayerGameMechanics : MonoBehaviour
 
     private int currentLife;
     private List<GameObject> monsters;
+    private bool shouldMonstersSpawn;
 
     // Use this for initialization
     void Start()
@@ -44,7 +45,7 @@ public class PlayerGameMechanics : MonoBehaviour
         // Maybe make a spookie boi
 
         if (
-                Time.time > 15f &&  // Don't start spawning monsters until 15 seconds in
+                shouldMonstersSpawn &&  // Don't start spawning monsters until the player hits the trigger
                 Monsters.Count < maxMonsters && // Don't spawn more than MaxMonsters
                 (Random.value * 100 < monsterSpawnRate || Time.time - timeOfLastMonster > 15) 
             )
@@ -109,5 +110,15 @@ public class PlayerGameMechanics : MonoBehaviour
 
         FlashlightManager flashlightManager = gameObject.GetComponent(typeof(FlashlightManager)) as FlashlightManager;
         flashlightManager.ReduceIntensity();
+    }
+
+    public void StartMonsterSpawn()
+    {
+        shouldMonstersSpawn = true;
+    }
+
+    public void StopMonsterSpawn()
+    {
+        shouldMonstersSpawn = false;
     }
 }

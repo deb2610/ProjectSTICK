@@ -30,6 +30,7 @@ public class SceneManager : MonoBehaviour
     public GameObject batteryPrefab;
     public GameObject tutorialMonster;
     public GameObject tutorialLamp;
+    public GameObject monsterSpawnTrigger;
     public TextAsset mazeFile;
     private Vector3 mazeOffset;
     private int indexTracker;
@@ -92,6 +93,10 @@ public class SceneManager : MonoBehaviour
                         tutorialMonster.transform.position = tutMonsterSpawn;
                         tutorialMonsterScript.positionToFlee = tutMonsterSpawn;
                         Debug.Log("Tut mons start: " + tutMonsterSpawn);
+                        break;
+                    case 'M':
+                        Vector3 monsterSpawnTriggerLoc = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
+                        monsterSpawnTrigger.transform.position = monsterSpawnTriggerLoc;
                         break;
                 }
                 if (MazeArray[i, j] == '0')
