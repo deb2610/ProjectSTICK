@@ -70,7 +70,8 @@ public class PlayerControler : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            GetComponent<SceneManager>().GetComponent<DialogueManager>().DisplayNextSentence();
+            GetComponent<DialogueManager>().theButton.onClick.Invoke();
+            //GetComponent<SceneManager>().GetComponent<DialogueManager>().DisplayNextSentence();
         }
 
         // Controller Support
