@@ -243,6 +243,7 @@ public class TutorialMonster : MonsterScript {
             {
                 timeOfKill = Time.time;
                 sprite.SetActive(false);
+                StopEctoplasm();
             }
             if (Time.time - postAnimationDelay > timeOfKill)
             {

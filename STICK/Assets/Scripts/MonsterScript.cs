@@ -103,7 +103,7 @@ public class MonsterScript : MonoBehaviour
         }
     }
 
-    private void StopEctoplasm()
+    protected void StopEctoplasm()
     {
         ghostJuice.SetActive(false);
     }
