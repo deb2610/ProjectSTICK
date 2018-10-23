@@ -99,6 +99,7 @@ public class TutorialMonster : MonsterScript {
             case State.NoticingTheLight:
             case State.TurnToFlee:
                 directionOfPlayer = Vector3.zero;
+                ghostJuice.SetActive(true);
                 break;
             case State.Fleeing:
                 decidedSpeed = fleeSpeed;

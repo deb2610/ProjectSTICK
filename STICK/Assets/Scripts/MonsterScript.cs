@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,11 +25,13 @@ public class MonsterScript : MonoBehaviour
 
     private float angleBetween;
     public float angelFix;
+    public GameObject ghostJuice;
 
     // Use this for initialization
     void Start()
     {
         myHealth = monsterMaxHealth;
+        ghostJuice = transform.GetChild(1).gameObject;
     }
 
     // Update is called once per frame
@@ -89,14 +92,29 @@ public class MonsterScript : MonoBehaviour
             float angleOffset = Mathf.Abs(myAngle);
             if (angleOffset <= monsterKillAngle)
             {
+                // TODO: Put Particle Emiter here
+                SpewEctoplasm();
                 TakeDamage();
+            }
+            else
+            {
+                StopEctoplasm();
             }
         }
     }
-    
+
+    private void StopEctoplasm()
+    {
+        ghostJuice.SetActive(false);
+    }
+
+    private void SpewEctoplasm()
+    {
+        ghostJuice.SetActive(true);
+    }
+
     protected void TakeDamage()
     {
-        // TODO: Put Particle Emiter here
         float damageDone = Time.deltaTime / monsterBurnSpeed * monsterMaxHealth;
         myHealth -= damageDone;
     }
@@ -139,6 +157,8 @@ public class MonsterScript : MonoBehaviour
         PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
         playerGameMechanics.KillMonster(gameObject);
 
+        //stops particle system
+        StopEctoplasm();
         // Remove this game object
         Destroy(gameObject);
     }

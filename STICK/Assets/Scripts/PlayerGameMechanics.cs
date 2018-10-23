@@ -26,9 +26,11 @@ public class PlayerGameMechanics : MonoBehaviour
     private float timeOfLastMonster = 0;
     public int maxMonsters = 5;
 
-    private int currentLife;
+    public int currentLife;
     private List<GameObject> monsters;
     private bool shouldMonstersSpawn;
+
+    public Canvas EndCanvas;
 
     // Use this for initialization
     void Start()
@@ -56,6 +58,8 @@ public class PlayerGameMechanics : MonoBehaviour
 
         if (currentLife == 0)
         {
+            gameObject.GetComponent<PlayerControler>().enabled = false;
+            EndCanvas.GetComponent<EndGameCanvas>().DisplayEndCanvas(false);
             // TODO: End the game
         }
     }

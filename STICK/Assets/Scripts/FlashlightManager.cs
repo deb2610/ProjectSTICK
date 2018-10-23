@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class FlashlightManager : MonoBehaviour {
 
+    public GameObject player;
     public GameObject Flashlight;
     public int numSteps = 3;
     public GameObject canvasGameObject;
     private Image FlashLightImage;
+    private Image PlayerFlashLight;
     private const string FlashlightSpriteLocation = "Sprites/flashlight";
+    private const string PlayerFlashlightSpriteLocation = "Sprites/light-";
 
     private float HeadlightMax;
     private float FootlightMax;
@@ -25,11 +28,16 @@ public class FlashlightManager : MonoBehaviour {
 	void Start () {
         currentStep = numSteps;
 
+        player = GameObject.FindGameObjectWithTag("Player");
+
         // Grab the flashlight   
         GameObject flashLightSprite = canvasGameObject.transform.Find("Flash").gameObject;
         FlashLightImage = flashLightSprite.GetComponent(typeof(Image)) as Image;
         string flashlightLoc = FlashlightSpriteLocation + currentStep.ToString();
         FlashLightImage.overrideSprite = Resources.Load<Sprite>(FlashlightSpriteLocation + currentStep.ToString());
+
+        string playerflashlightLoc = PlayerFlashlightSpriteLocation + currentStep.ToString();
+        Flashlight.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(PlayerFlashlightSpriteLocation + currentStep.ToString());
 
         // Grab the light objects
         GameObject headlightGO = Flashlight.transform.Find("Headlight").gameObject;
@@ -78,6 +86,7 @@ public class FlashlightManager : MonoBehaviour {
     public void RestoreHealth(int stepsToIncrease)
     {
         currentStep += stepsToIncrease;
+        player.GetComponent<PlayerGameMechanics>().currentLife += stepsToIncrease;
         if (currentStep > numSteps)
         {
             currentStep = numSteps;
@@ -98,6 +107,7 @@ public class FlashlightManager : MonoBehaviour {
 
         // Update UI
         FlashLightImage.overrideSprite = Resources.Load<Sprite>(FlashlightSpriteLocation + currentStep.ToString());
+        Flashlight.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(PlayerFlashlightSpriteLocation + currentStep.ToString());
     }
 
     public bool IsBatteryFull()
