@@ -17,6 +17,8 @@ public class TutorialMonster : MonsterScript {
     public GameObject lampToLookAt;         // lämp
     public GameObject introCanvas;
     public float postAnimationDelay = 1.0f; // Seconds
+    public float cameraZoomPercentage = 0.5f;
+    public float thirdPausePeriod = 2.0f;    // Seconds
 
     State state;
     float currentStateStartFrame;
@@ -26,7 +28,10 @@ public class TutorialMonster : MonsterScript {
     float angleToLookAtLanturn = -180;
     PlayerControler playerControler;
     GameObject sprite;
+    Camera playerCamera;
     float timeOfKill = -1.0f;           // Negative means not set
+    private float cameraStartFOV;
+    float cameraZ = 9.5f;
 
     // Represents the current state of this monster's script. For the tutorial, we'll have him
     // walk in, pause for a second while he starts burning, look at the light, start to flee, 
@@ -39,7 +44,8 @@ public class TutorialMonster : MonsterScript {
         NoticingTheLight,   // The monster turns toward the light               (.5  seconds)
         Pause2,             // The monster pauses to "process" the light        (.25 seconds)
         TurnToFlee,         // The monster turns to flee back to the woods      (.25 seconds)
-        Fleeing             // The monster flees into the woods                 (n   seconds)
+        Fleeing,            // The monster flees into the woods                 (n   seconds)
+        ResetCamera              // One final pause to transition the camera back
     }
 
 	// Use this for initialization
@@ -98,6 +104,7 @@ public class TutorialMonster : MonsterScript {
             case State.Pause2:
             case State.NoticingTheLight:
             case State.TurnToFlee:
+            case State.ResetCamera:
                 directionOfPlayer = Vector3.zero;
                 ghostJuice.SetActive(true);
                 break;
@@ -144,6 +151,12 @@ public class TutorialMonster : MonsterScript {
                 break;
             case State.Fleeing:
                 base.LookAtPlayer();
+                break;
+            case State.ResetCamera:
+                Vector3 finalCamPos = player.transform.position; // Ensure the camera actually makes it back to the player
+                finalCamPos.z = cameraZ;
+                playerCamera.orthographicSize = Mathf.Lerp(cameraZoomPercentage * cameraStartFOV, cameraStartFOV, (Time.time - currentStateStartFrame) / thirdPausePeriod);
+                playerCamera.transform.position = Vector3.Lerp(positionToSeek, finalCamPos, (Time.time - currentStateStartFrame) / thirdPausePeriod);
                 break;
         }
     }
@@ -229,7 +242,15 @@ public class TutorialMonster : MonsterScript {
                 }
                 break;
             case State.Fleeing:
-                // This is the last state. Do nothing.
+                if (timeOfKill > 0 && Time.time - postAnimationDelay > timeOfKill)
+                {
+                    state = State.ResetCamera;
+                    currentStateStartFrame = Time.time;
+                    Debug.Log("Setting State: ResetCamera " + currentStateStartFrame);
+                }
+                break;
+            case State.ResetCamera:
+                // Last state
                 break;
         }
     }
@@ -245,8 +266,11 @@ public class TutorialMonster : MonsterScript {
                 sprite.SetActive(false);
                 StopEctoplasm();
             }
-            if (Time.time - postAnimationDelay > timeOfKill)
+            if (state == State.ResetCamera && Time.time - thirdPausePeriod > currentStateStartFrame)
             {
+                Vector3 finalCamPos = player.transform.position; // Ensure the camera actually makes it back to the player
+                finalCamPos.z = cameraZ;
+                playerCamera.transform.position = finalCamPos;
                 KillMonster();
             }
         }
@@ -255,5 +279,16 @@ public class TutorialMonster : MonsterScript {
     {
         playerControler.GivePlayerControl();
         Destroy(gameObject);
+    }
+
+    public void SetCameraStartPosition()
+    {
+        playerCamera = GameObject.Find("Main Camera").GetComponent(typeof(Camera)) as Camera;
+        cameraZ = playerCamera.transform.position.z;
+        cameraStartFOV = playerCamera.orthographicSize;
+        Vector3 startCamPos = positionToSeek; // Ensure the camera actually makes it back to the player
+        startCamPos.z = cameraZ;
+        playerCamera.transform.position = startCamPos;
+        playerCamera.orthographicSize = cameraStartFOV * cameraZoomPercentage;
     }
 }

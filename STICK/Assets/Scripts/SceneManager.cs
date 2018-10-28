@@ -46,6 +46,7 @@ public class SceneManager : MonoBehaviour
         startIndex = new Vector3(0, 1, 0);
         indexTracker = 0;
         TutorialMonster tutorialMonsterScript = tutorialMonster.GetComponent(typeof(TutorialMonster)) as TutorialMonster;
+        bool useTutMon = false;
 
         for (int i = 0; i < MazeArray.GetLength(0); i++)
         {
@@ -92,6 +93,7 @@ public class SceneManager : MonoBehaviour
                         Vector3 tutMonsterSpawn = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
                         tutorialMonster.transform.position = tutMonsterSpawn;
                         tutorialMonsterScript.positionToFlee = tutMonsterSpawn;
+                        useTutMon = true;
                         Debug.Log("Tut mons start: " + tutMonsterSpawn);
                         break;
                     case 'M':
@@ -106,9 +108,14 @@ public class SceneManager : MonoBehaviour
                 }
             }
         }
-
         transform.position = (startIndex + mazeOffset);
         player.transform.Rotate(new Vector3(0, 0, -90f));
+
+        // Call this last
+        if (useTutMon)
+        {
+            tutorialMonsterScript.SetCameraStartPosition();
+        }
     }
 
     // Update is called once per frame
