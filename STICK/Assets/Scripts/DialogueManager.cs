@@ -39,6 +39,14 @@ public class DialogueManager : MonoBehaviour {
         box.GetComponent<CanvasGroup>().alpha = 0.00f;
     }
 	
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            DisplayNextSentence();
+        }
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
         theButton.GetComponent<CanvasGroup>().alpha = 1.00f;
