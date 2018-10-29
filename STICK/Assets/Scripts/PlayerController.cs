@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControler : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
     public float movementSpeed = 1f; // Units per second
     public float sprintMultiplier = 2f;
@@ -26,9 +26,21 @@ public class PlayerControler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        PausedInput();
+
         if (playerHasControl)
         {
             ProcessInput();
+        }
+    }
+
+    void PausedInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
+            playerGameMechanics.TogglePause();
         }
     }
 

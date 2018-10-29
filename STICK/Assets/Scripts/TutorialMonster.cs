@@ -26,7 +26,7 @@ public class TutorialMonster : MonsterScript {
 
     float pauseOneStopAngle = -90;
     float angleToLookAtLanturn = -180;
-    PlayerControler playerControler;
+    PlayerController playerControler;
     GameObject sprite;
     Camera playerCamera;
     float timeOfKill = -1.0f;           // Negative means not set
@@ -52,7 +52,7 @@ public class TutorialMonster : MonsterScript {
 	void Start () {
 
         // Grab the player controler
-        playerControler = player.GetComponent(typeof(PlayerControler)) as PlayerControler;
+        playerControler = player.GetComponent(typeof(PlayerController)) as PlayerController;
         playerControler.TakePlayerControl();
 
         // This is wrapped in a try catch so that if the component is disabled, it doesn't break

@@ -774,12 +774,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 463380862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d76d7044e43d59409ad3defdacf8b44, type: 3}
+  m_Script: {fileID: 11500000, guid: 5661e26e05eb64b48a36a9dc8a829a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1.5
-  sprintMultiplier: 2.5
-  joystickTolerance: 0.001
+  sprintMultiplier: 2
+  joystickTolerance: 0.05
   player: {fileID: 463380862}
 --- !u!114 &463380866
 MonoBehaviour:
