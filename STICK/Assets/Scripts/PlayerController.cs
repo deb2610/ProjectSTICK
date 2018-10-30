@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour {
             PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
             playerGameMechanics.TogglePause();
         }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            GetComponent<DialogueManager>().theButton.onClick.Invoke();
+            //GetComponent<SceneManager>().GetComponent<DialogueManager>().DisplayNextSentence();
+        }
     }
 
     void ProcessInput()

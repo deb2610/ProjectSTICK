@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour {
 
     public List<Dialogue> dialogueRepo;
 
+    public GameObject player;
     public Button theButton;
     public GameObject box;
     public Text nameText;
@@ -52,6 +53,10 @@ public class DialogueManager : MonoBehaviour {
         theButton.GetComponent<CanvasGroup>().alpha = 1.00f;
         box.GetComponent<CanvasGroup>().alpha = 1.00f;
         nameText.text = dialogue.nameT;
+
+        PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
+        playerGameMechanics.TogglePause();
+
         sentences.Clear();
 
         foreach(string s in dialogue.sentences)
@@ -86,6 +91,9 @@ public class DialogueManager : MonoBehaviour {
     }
     public void EndDialogue()
     {
+        PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
+        playerGameMechanics.TogglePause();
+
         theButton.GetComponent<CanvasGroup>().alpha = 0.00f;
         box.GetComponent<CanvasGroup>().alpha = 0.00f;
         nameText.text = "";
