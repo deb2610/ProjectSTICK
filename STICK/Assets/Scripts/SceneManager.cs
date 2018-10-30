@@ -99,11 +99,11 @@ public class SceneManager : MonoBehaviour
                         monsterSpawnTrigger.transform.position = monsterSpawnTriggerLoc;
                         break;
                 }
-                if (MazeArray[i, j] == '0')
-                {
-                    Vector3 wallPos = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
-                    Instantiate(wallBlockPrefab, wallPos, Quaternion.identity);
-                }
+                //if (MazeArray[i, j] == '0')
+                //{
+                //    Vector3 wallPos = new Vector3(i * mazeScale, j * mazeScale, 0) + mazeOffset;
+                //    Instantiate(wallBlockPrefab, wallPos, Quaternion.identity);
+                //}
             }
         }
 

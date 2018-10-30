@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TreeMiddle
+  m_Name: mapleMiddle
   m_Shader: {fileID: 10800, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -23,7 +23,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 4767bc72e0d931e45af9aa0259f4eb25, type: 3}
+        m_Texture: {fileID: 2800000, guid: bbcd3175fc9138447a73fb687f428cec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -43,7 +43,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4e64a51dff18ac046b28ee8f9a8bba3d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4ceb14c13b4b25b4f99e792bb45945c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

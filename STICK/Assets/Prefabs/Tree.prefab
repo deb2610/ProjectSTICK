@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4706107766009898}
   - component: {fileID: 65386691109926410}
+  - component: {fileID: 114209644472066482}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -145,6 +146,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114209644472066482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072577605299584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db14798f863a264988f593cb89b3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pineTop: {fileID: 21300000, guid: 246c423e43482714185ace5b5db8c6be, type: 3}
+  pineMid: {fileID: 21300000, guid: 4e64a51dff18ac046b28ee8f9a8bba3d, type: 3}
+  pineBot: {fileID: 21300000, guid: 4cccd64136c0d8e41a4a74133c3b1c5f, type: 3}
+  mapleTop: {fileID: 21300000, guid: 2b43791888c911c4caeeb28e6a98286a, type: 3}
+  mapleMid: {fileID: 21300000, guid: 4ceb14c13b4b25b4f99e792bb45945c8, type: 3}
+  mapleBot: {fileID: 21300000, guid: 4a1be9ee6c98b2e449376ec276745001, type: 3}
+  treeType: 0
+  treeTopObject: {fileID: 1877783311925266}
+  treeMidObject: {fileID: 1407934462289062}
+  treeBotObject: {fileID: 1280436049232816}
 --- !u!114 &114599293217441872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,7 +215,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c557c8c175e02bb45ba94dd2ed308978, type: 2}
+  - {fileID: 2100000, guid: fb135c4e9cbe916408c7c12902a006d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,7 +235,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4cccd64136c0d8e41a4a74133c3b1c5f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a1be9ee6c98b2e449376ec276745001, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -239,7 +261,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5c977c5aa77cca5489690223ad804080, type: 2}
+  - {fileID: 2100000, guid: fb135c4e9cbe916408c7c12902a006d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -259,7 +281,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4e64a51dff18ac046b28ee8f9a8bba3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ceb14c13b4b25b4f99e792bb45945c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -285,7 +307,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d6b4fa625b52b0c46b94cba73212fca6, type: 2}
+  - {fileID: 2100000, guid: fb135c4e9cbe916408c7c12902a006d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -305,7 +327,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 246c423e43482714185ace5b5db8c6be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b43791888c911c4caeeb28e6a98286a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
