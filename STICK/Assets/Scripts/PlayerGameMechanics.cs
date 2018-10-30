@@ -32,6 +32,8 @@ public class PlayerGameMechanics : MonoBehaviour
 
     public Canvas EndCanvas;
 
+    private bool isPaused = false;
+
     // Use this for initialization
     void Start()
     {
@@ -58,7 +60,7 @@ public class PlayerGameMechanics : MonoBehaviour
 
         if (currentLife == 0)
         {
-            gameObject.GetComponent<PlayerControler>().enabled = false;
+            gameObject.GetComponent<PlayerController>().enabled = false;
             EndCanvas.GetComponent<EndGameCanvas>().DisplayEndCanvas(false);
             // TODO: End the game
         }
@@ -124,5 +126,42 @@ public class PlayerGameMechanics : MonoBehaviour
     public void StopMonsterSpawn()
     {
         shouldMonstersSpawn = false;
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        if(isPaused)
+        {
+            PauseGame();
+        }
+        else
+        {
+            UnpauseGame();
+        }
+    }
+
+    public void PauseGame()
+    {
+        // Revoke player control
+        PlayerController controller = GetComponent(typeof(PlayerController)) as PlayerController;
+        controller.TakePlayerControl();
+
+        // Pause all of the monsters
+        Monsters.Select(m => m.GetComponent(typeof(MonsterScript)) as MonsterScript)
+            .ToList()
+            .ForEach(ms => ms.IsPaused = true);
+    }
+
+    public void UnpauseGame()
+    {
+        // Revoke player control
+        PlayerController controller = GetComponent(typeof(PlayerController)) as PlayerController;
+        controller.GivePlayerControl();
+
+        // Pause all of the monsters
+        Monsters.Select(m => m.GetComponent(typeof(MonsterScript)) as MonsterScript)
+            .ToList()
+            .ForEach(ms => ms.IsPaused = false);
     }
 }

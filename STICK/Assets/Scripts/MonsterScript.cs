@@ -13,6 +13,11 @@ public class MonsterScript : MonoBehaviour
     public GameObject player;
     protected float decidedSpeed;
 
+    /// <summary>
+    /// Set this to true to pause the monsters
+    /// </summary>
+    public bool IsPaused { get; set; }
+
     public float monsterMaxHealth = 100.0f; // Percent
     public float monsterBurnSpeed = 0.5f;   // The number of seconds it takes to kill a monster
     protected float myHealth;
@@ -40,12 +45,14 @@ public class MonsterScript : MonoBehaviour
         //transorm correction
         //gameObject.GetComponent<Transform>().position = new Vector3(transform.position.x, transform.position.y, 9.75f);
         //transform.LookAt(player.transform);
-
-        CalculateMovementSpeed();
-        SeekPlayer();
-        CheckFlashlight();
-        CheckDeath();
-        LookAtPlayer();
+        if (!IsPaused)
+        {
+            CalculateMovementSpeed();
+            SeekPlayer();
+            CheckFlashlight();
+            CheckDeath();
+            LookAtPlayer();
+        }
     }
     protected virtual void OnTriggerEnter(Collider other)
     {
@@ -86,7 +93,7 @@ public class MonsterScript : MonoBehaviour
     {
         if (directionOfPlayer.magnitude <= monsterKillDistance)
         {
-            PlayerControler playerController = player.GetComponent(typeof(PlayerControler)) as PlayerControler;
+            PlayerController playerController = player.GetComponent(typeof(PlayerController)) as PlayerController;
             
             float myAngle = Vector3.Angle(playerController.FlashlightAngle, directionOfPlayer);
             float angleOffset = Mathf.Abs(myAngle);
