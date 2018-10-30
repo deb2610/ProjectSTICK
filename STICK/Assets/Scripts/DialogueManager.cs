@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour {
         nameText.text = dialogue.nameT;
 
         PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
-        playerGameMechanics.TogglePause();
+        playerGameMechanics.PauseGame();
 
         sentences.Clear();
 
@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour {
     public void EndDialogue()
     {
         PlayerGameMechanics playerGameMechanics = player.GetComponent(typeof(PlayerGameMechanics)) as PlayerGameMechanics;
-        playerGameMechanics.TogglePause();
+        playerGameMechanics.UnpauseGame();
 
         theButton.GetComponent<CanvasGroup>().alpha = 0.00f;
         box.GetComponent<CanvasGroup>().alpha = 0.00f;
