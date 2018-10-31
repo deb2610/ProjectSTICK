@@ -14,6 +14,12 @@ public class DialogueTrigger : MonoBehaviour {
     }
     void OnTriggerEnter()
     {
+        // Disable the trigger so the same dialogue doesn't get enabled twice
+        Collider collider = gameObject.GetComponent(typeof(Collider)) as Collider;
+
+        // Disable the trigger so the same dialogue doesn't get enabled twice
+        collider.enabled = false;
+
         FindObjectOfType<DialogueManager>().StartDialogue(dialogues[dialogueIndex]);
     }
 }

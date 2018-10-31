@@ -175,7 +175,7 @@ public class TutorialMonster : MonsterScript {
         switch (state)
         {
             case State.WalkingIn:
-                if((transform.position - positionToSeek).magnitude < 0.01)
+                if((transform.position - positionToSeek).magnitude < 0.05)
                 {
                     state = State.Pause;
                     currentStateStartFrame = Time.time;
