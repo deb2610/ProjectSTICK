@@ -13,7 +13,17 @@ public class PlayerController : MonoBehaviour {
     private float cameraOffset;
     private bool useMouse = true;
     private bool playerHasControl = true;
-
+    public GameObject canvasTextBox;
+    public GameObject canvasButton;
+    public GameObject light1;
+    public GameObject light2;
+    public GameObject light3;
+    public GameObject light4;
+    public GameObject bossHead;
+    public GameObject bossArm1;
+    public GameObject bossArm2;
+    public GameObject bossMane;
+    public GameObject bossTail;
     /// <summary>
     /// A vector pointing in the direction of the flashlight
     /// </summary>
@@ -90,6 +100,32 @@ public class PlayerController : MonoBehaviour {
             GetComponent<DialogueManager>().theButton.onClick.Invoke();
             //GetComponent<SceneManager>().GetComponent<DialogueManager>().DisplayNextSentence();
         }
+        //gdc movie stuff
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            movementSpeed = 3.0f;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            movementSpeed = 1.5f;
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ShowTextbox();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ShowLights();
+        }
+        if (Input.GetKey(KeyCode.B))
+        {
+            FadeBossOut();
+        }
+        if (Input.GetKey(KeyCode.N))
+        {
+            FadeBossIn();
+        }
+
 
         // Controller Support
         float xJoysticMove = Input.GetAxis("LeftJoystickX");
@@ -144,5 +180,74 @@ public class PlayerController : MonoBehaviour {
     public void TakePlayerControl()
     {
         playerHasControl = false;
+    }
+    public void ShowTextbox()
+    {
+        if (canvasButton.activeSelf == false)
+        {
+            canvasTextBox.GetComponent<CanvasGroup>().alpha = 1;
+            canvasButton.GetComponent<CanvasGroup>().alpha = 1;
+            canvasTextBox.SetActive(true);
+            canvasButton.SetActive(true);
+        }
+        else
+        {
+            canvasTextBox.GetComponent<CanvasGroup>().alpha = 0;
+            canvasButton.GetComponent<CanvasGroup>().alpha = 0;
+            canvasTextBox.SetActive(false);
+            canvasButton.SetActive(false);
+        }
+    }
+    public void ShowLights()
+    {
+        if (light1.activeSelf == false)
+        {
+            light1.SetActive(true);
+            light2.SetActive(true);
+            light3.SetActive(true);
+            light4.SetActive(true);
+        }
+        else
+        {
+            light1.SetActive(false);
+            light2.SetActive(false);
+            light3.SetActive(false);
+            light4.SetActive(false);
+        }
+    }
+    public void FadeBossOut()
+    {
+        var color = bossHead.GetComponent<Renderer>().material.color;
+        var alpha = color.a;
+        alpha -= .01f;
+        if (alpha <= 0.0f)
+        {
+            alpha = 0.0f;
+        }
+        //Debug.Log(alpha);
+        Color newcolor = new Color(color.r, color.g, color.b, alpha);
+        //Debug.Log(newcolor.a);
+        bossHead.GetComponent<Renderer>().material.color = newcolor;
+        bossArm1.GetComponent<Renderer>().material.color = newcolor;
+        bossArm2.GetComponent<Renderer>().material.color = newcolor;
+        bossMane.GetComponent<Renderer>().material.color = newcolor;
+        bossTail.GetComponent<Renderer>().material.color = newcolor;
+    }
+    public void FadeBossIn()
+    {
+        var color = bossHead.GetComponent<Renderer>().material.color;
+        var alpha = color.a;
+        alpha += .01f;
+        if (alpha >= 1.0f)
+        {
+            alpha = 1.0f;
+        }
+        Color newcolor = new Color(color.r, color.g, color.b, alpha);
+        //Debug.Log(newcolor.a);
+        bossHead.GetComponent<Renderer>().material.color = newcolor;
+        bossArm1.GetComponent<Renderer>().material.color = newcolor;
+        bossArm2.GetComponent<Renderer>().material.color = newcolor;
+        bossMane.GetComponent<Renderer>().material.color = newcolor;
+        bossTail.GetComponent<Renderer>().material.color = newcolor;
     }
 }
